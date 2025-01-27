@@ -7,6 +7,18 @@ def save_flashcard(content):
 	with open(json_file_const, "w") as file:
 		json.dump(content, file, indent=4)
 
+def manage_points(answer):
+	points = 0
+	if answer == True:
+		points += 1 
+		return points
+	else:
+		points -= 1
+		return points
+	if points < 0:
+		print('Game Over')
+		return points
+
 def change_question(): 
 	content = post_topics()
 	input_topic = input('Type the name of the topic: ')
@@ -106,7 +118,8 @@ def start_quiz():
 			input_answer = input('Answer: ')
 			if input_answer == content[input_topic][i]['correct-answer']: 
 				i += 1
-				print(i)
+				points = manage_points(input_answer == content[input_topic][i]['correct-answer'])
+				print(points)
 			else:
 				print('Wrong Answer')
 	else: 

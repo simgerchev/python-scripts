@@ -1,29 +1,90 @@
 {
-    "first-topic": [
-        {
-            "question": "Marin pedal li e?",
-            "answer": {
-                "A": "da",
-                "B": "Second option",
-                "C": "Third option"
-            },
-            "correct-answer": "A"
+    "understanding-motherboard": [
+    {
+        "question": "Which CPU architecture is commonly used in mobile devices due to its power efficiency?",
+        "answer": {
+            "A": "x86",
+            "B": "x64",
+            "C": "ARM"
         },
-        {
-            "question": "Definetly not an asdasd",
-            "answer": {
-                "A": "First option",
-                "B": "Second option",
-                "C": "Third option"
-            }
+        "correct-answer": "C"
+    },
+    {
+        "question": "Which of the following is an advantage of a multicore processor compared to a single-core processor?",
+        "answer": {
+            "A": "Higher clock speed",
+            "B": "Ability to process multiple tasks simultaneously",
+            "C": "Lower power consumption"
         },
-        {
-            "question": "ne",
-            "answer": {
-                "A": "asd",
-                "B": "asd",
-                "C": "asd"
-            }
-        }
-    ]
+        "correct-answer": "B"
+    },
+    {
+        "question": "What feature allows a single CPU core to process two threads simultaneously?",
+        "answer": {
+            "A": "Virtualization",
+            "B": "Multithreading",
+            "C": "Overclocking"
+        },
+        "correct-answer": "B"
+    },
+    {
+        "question": "Which CPU feature is essential for running virtual machines efficiently?",
+        "answer": {
+            "A": "ECC Memory Support",
+            "B": "Hyperthreading",
+            "C": "Virtualization Support (e.g., Intel VT or AMD-V)"
+        },
+        "correct-answer": "C"
+    },
+    {
+        "question": "Which type of CPU architecture is typically used for 64-bit operating systems?",
+        "answer": {
+            "A": "ARM",
+            "B": "x86",
+            "C": "x64"
+        },
+        "correct-answer": "C"
+    },
+    {
+        "question": "Multithreading allows a single CPU to process multiple instructions at the exact same time.",
+        "answer": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct-answer": "B"
+    },
+    {
+        "question": "ARM CPUs are compatible with both 32-bit and 64-bit operating systems.",
+        "answer": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct-answer": "A"
+    },
+    {
+        "question": "x86 architecture refers to 64-bit processors.",
+        "answer": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct-answer": "B"
+    },
+    {
+        "question": "Virtualization requires both hardware and software support.",
+        "answer": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct-answer": "A"
+    },
+    {
+        "question": "Multicore processors improve performance by sharing a single core's clock speed across multiple cores.",
+        "answer": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct-answer": "B"
+    }
+]
+
 }
