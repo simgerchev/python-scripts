@@ -3,10 +3,22 @@ import sys
 
 json_file_const = 'random.json'
 
+"""
+Saves a flashcard
+
+:param content:array content of the flashcard
+:return: returns nothing
+"""
 def save_flashcard(content):
 	with open(json_file_const, "w") as file:
 		json.dump(content, file, indent=4)
 
+"""
+Counts and manages points
+
+:param answer:bool answer of the question
+:return: returns nothing
+"""
 def manage_points(answer):
 	points = 0
 	if answer == True:
@@ -19,6 +31,11 @@ def manage_points(answer):
 		print('Game Over')
 		return points
 
+"""
+Functionality to change the content of a question
+
+:return: returns nothing
+"""
 def change_question(): 
 	content = post_topics()
 	input_topic = input('Type the name of the topic: ')
@@ -48,7 +65,12 @@ def change_question():
 	else: 
 		print('Topic doesnt exist')
 		start_menu()
+		
+"""
+Adds a question
 
+:return: returns nothing
+"""
 def add_question(): 
 	content = post_topics()
 	input_topic = input('Type the name of the topic: ')
@@ -66,10 +88,20 @@ def add_question():
 		print('Topic doesnt exist')
 		start_menu()
 
+"""
+Adds a topic
+
+:return: returns nothing
+"""
 def add_topic():
 	content = post_topics()
 	input_topic = input('Type the name of the topic you want to add: ')
 
+"""
+Function that shows the start menu
+
+:return: returns nothing
+"""
 def start_menu():
 	print("----------------------------------------------------------------------------------------------------")
 	input_option = input("Do you want to: \n"+ 
@@ -91,6 +123,11 @@ def start_menu():
 	if input_option == '5':
 		exit()
 
+"""
+Post topics
+
+:return: returns content:array
+"""
 def post_topics(): 
 	with open(json_file_const, "r") as file:
 		content = json.load(file)
@@ -99,6 +136,12 @@ def post_topics():
 			print(i)
 	return content
 
+"""
+Saves a flashcard
+
+:param content: The name of foo
+:return: returns nothing
+"""
 def post_all_questions(input_topic):
 	with open(json_file_const, "r") as file:
 		content = json.load(file)
@@ -107,6 +150,11 @@ def post_all_questions(input_topic):
 			print(i)
 	return content
 
+"""
+Starts the quiz
+
+:return: returns nothing
+"""
 def start_quiz(): 
 	content = post_topics()
 	input_topic = input('Type the name of the topic: ')
@@ -126,7 +174,11 @@ def start_quiz():
 		print('Topic doesnt exist')
 		start_menu()
 
+"""
+Stops the application
 
+:return: returns nothing
+"""
 def exit(): 
 	sys.exit()
 
