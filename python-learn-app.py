@@ -33,6 +33,8 @@ def manage_points(answer):
 
 """
 Functionality to change the content of a question
+-- work in progress -- 
+-- maybe wouldn't need it at all -- 
 
 :return: returns nothing
 """
@@ -76,14 +78,20 @@ def add_question():
 	input_topic = input('Type the name of the topic: ')
 	if input_topic in content:
 		post_all_questions(input_topic)
-		input_question = input('Enter your question here: ')
-		input_first_answer = input('Enter your first answer here: ')
-		input_second_answer = input('Enter your second answer here: ')
-		input_third_answer = input('Enter your third answer here: ')
-
-		new_entry = {"question": input_question, "answer": {"A":input_first_answer, "B":input_second_answer, "C":input_third_answer}}
-		content[input_topic].append(new_entry)
-		save_flashcard(content)
+		question_type = input('What question do you want to add? multiple-choise / short-answer') 
+		if question_type == 'mutliple-choise': 
+			input_question = input('Enter your question here: ')
+			input_first_answer = input('Enter your first answer here: ')
+			input_second_answer = input('Enter your second answer here: ')
+			input_third_answer = input('Enter your third answer here: ')
+	
+			new_entry = {"question": input_question, "answer": {"A":input_first_answer, "B":input_second_answer, "C":input_third_answer}}
+			content[input_topic].append(new_entry)
+			save_flashcard(content)
+		elif question_type == 'short-answer ': 
+			input_question = input('Enter your question here: ')
+			input_answer = input('Enter your first answer here: ')
+		#undone
 	else: 
 		print('Topic doesnt exist')
 		start_menu()
