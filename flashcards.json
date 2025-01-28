@@ -7,7 +7,8 @@
             "B": "x64",
             "C": "ARM"
         },
-        "correct-answer": "C"
+        "correct-answer": "C",
+        "question-type": "multiple-choise"
     },
     {
         "question": "Which of the following is an advantage of a multicore processor compared to a single-core processor?",
@@ -16,7 +17,8 @@
             "B": "Ability to process multiple tasks simultaneously",
             "C": "Lower power consumption"
         },
-        "correct-answer": "B"
+        "correct-answer": "B",
+        "question-type": "multiple-choise"
     },
     {
         "question": "What feature allows a single CPU core to process two threads simultaneously?",
@@ -25,7 +27,8 @@
             "B": "Multithreading",
             "C": "Overclocking"
         },
-        "correct-answer": "B"
+        "correct-answer": "B",
+        "question-type": "multiple-choise"
     },
     {
         "question": "Which CPU feature is essential for running virtual machines efficiently?",
@@ -34,7 +37,8 @@
             "B": "Hyperthreading",
             "C": "Virtualization Support (e.g., Intel VT or AMD-V)"
         },
-        "correct-answer": "C"
+        "correct-answer": "C",
+        "question-type": "multiple-choise"
     },
     {
         "question": "Which type of CPU architecture is typically used for 64-bit operating systems?",
@@ -43,7 +47,8 @@
             "B": "x86",
             "C": "x64"
         },
-        "correct-answer": "C"
+        "correct-answer": "C",
+        "question-type": "multiple-choise"
     },
     {
         "question": "Multithreading allows a single CPU to process multiple instructions at the exact same time.",
@@ -51,7 +56,8 @@
             "A": "True",
             "B": "False"
         },
-        "correct-answer": "B"
+        "correct-answer": "B",
+        "question-type": "multiple-choise"
     },
     {
         "question": "ARM CPUs are compatible with both 32-bit and 64-bit operating systems.",
@@ -59,7 +65,8 @@
             "A": "True",
             "B": "False"
         },
-        "correct-answer": "A"
+        "correct-answer": "A",
+        "question-type": "multiple-choise"
     },
     {
         "question": "x86 architecture refers to 64-bit processors.",
@@ -67,7 +74,8 @@
             "A": "True",
             "B": "False"
         },
-        "correct-answer": "B"
+        "correct-answer": "B",
+        "question-type": "multiple-choise"
     },
     {
         "question": "Virtualization requires both hardware and software support.",
@@ -75,7 +83,8 @@
             "A": "True",
             "B": "False"
         },
-        "correct-answer": "A"
+        "correct-answer": "A",
+        "question-type": "multiple-choise"
     },
     {
         "question": "Multicore processors improve performance by sharing a single core's clock speed across multiple cores.",
@@ -83,7 +92,8 @@
             "A": "True",
             "B": "False"
         },
-        "correct-answer": "B"
+        "correct-answer": "B",
+        "question-type": "multiple-choise"
     }
 ]
 
