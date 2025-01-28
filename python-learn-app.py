@@ -1,7 +1,7 @@
 import json
 import sys
 
-json_file_const = 'random.json'
+json_file_const = 'flashcards.json'
 
 """
 Saves a flashcard
