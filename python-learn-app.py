@@ -161,6 +161,23 @@ def post_all_questions(input_topic):
 """
 Starts the quiz
 
+#print and input // maybe pack it into another method 
+print(content[input_topic][i]['question'])
+print(content[input_topic][i]['answer'])
+input_answer = input('Answer: ')
+
+if question-type == 'multiple-choise': 
+	# the actual check if its true or not 
+	if input_answer == content[input_topic][i]['correct-answer']: 
+		i += 1
+		points = manage_points(input_answer == content[input_topic][i]['correct-answer'])
+		print(points)
+	else:
+		print('Wrong Answer')
+elif question-type == '': 
+
+	
+ 
 :return: returns nothing
 """
 def start_quiz(): 
