@@ -1,8 +1,12 @@
 import json
 import sys
 
-# constants 
+# json constants 
 json_file_const = 'flashcards.json'
+short_answer_type_const = 'short-answer'
+multiple_answer_type_const = 'mutliple-choise'
+question_type_const = 'question-type'
+correct_answer_const = 'correct-answer'
 
 
 '''
@@ -49,7 +53,7 @@ def add_question():
 	if input_topic in content:
 		post_all_questions(input_topic)
 		question_type = input('What question do you want to add? multiple-choise / short-answer') 
-		if question_type == 'mutliple-choise': 
+		if question_type == multiple_answer_type_const: 
 			input_question = input('Enter your question here: ')
 			input_first_answer = input('Enter your first answer here: ')
 			input_second_answer = input('Enter your second answer here: ')
@@ -58,10 +62,13 @@ def add_question():
 			new_entry = {"question": input_question, "option": {"A":input_first_answer, "B":input_second_answer, "C":input_third_answer}}
 			content[input_topic].append(new_entry)
 			save_flashcard(content)
-		elif question_type == 'short-answer ': 
+		elif question_type == short_answer_type_const: 
 			input_question = input('Enter your question here: ')
 			input_answer = input('Enter your first answer here: ')
-		#undone
+
+			new_entry = {"question": input_question, "answer": input_answer}
+			content[input_topic].append(new_entry)
+			save_flashcard(content)
 	else: 
 		print('Topic doesnt exist')
 		start_menu()
@@ -83,22 +90,19 @@ Function that shows the start menu
 def start_menu():
 	print("----------------------------------------------------------------------------------------------------")
 	input_option = input("Do you want to: 🦒\n"+ 
-		"1. Change existing question \n"+
+		"1. Show all topics\n"+
 		"2. Add another question \n"+
-		"3. Show all topics \n"+
-		"4. Start quiz \n"+
-		"5. Quit \n"+
+		"3. Start quiz \n"+
+		"4. Quit \n"+
 		" ---------------------------------------------------------------------------------------------------- \n"+
 		"")
-	if input_option == '1': 
-		change_question() 
+	if input_option == '1':
+		post_topics()
 	if input_option == '2':
 		add_question()
 	if input_option == '3':
-		post_topics()
-	if input_option == '4':
 		start_quiz()
-	if input_option == '5':
+	if input_option == '4':
 		exit()
 
 '''
@@ -140,22 +144,22 @@ def start_quiz():
 		i = 0
 		while i < len(content[input_topic]):
 			print(content[input_topic][i]['question'])
-			if content[input_topic][i]['question-type'] == 'multiple-choise': 
-				print(content[input_topic][i]['question-type'])
+			if content[input_topic][i][question_type_const] == multiple_answer_type_const: 
+				print(content[input_topic][i][question_type_const])
 				print(content[input_topic][i]['option'])
 				input_answer = input('Answer: ')
-				if input_answer == content[input_topic][i]['correct-answer']: 
+				if input_answer == content[input_topic][i][correct_answer_const]: 
 					i += 1
-					points = manage_points(input_answer == content[input_topic][i]['correct-answer'])
+					points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
 					print(points)
 				else:
 					print('Wrong Answer')
-			elif content[input_topic][i]['question-type'] == 'short-answer':
-				print(content[input_topic][i]['question-type'])
+			elif content[input_topic][i][question_type_const] == short_answer_type_const:
+				print(content[input_topic][i][question_type_const])
 				input_answer = input('Answer: ')
-				if input_answer == content[input_topic][i]['correct-answer']: 
+				if input_answer == content[input_topic][i][correct_answer_const]: 
 					i += 1
-					points = manage_points(input_answer == content[input_topic][i]['correct-answer'])
+					points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
 					print(points)
 				else:
 					print('Wrong Answer')
@@ -183,47 +187,3 @@ while True:
 
 
 
-
-
-
-'''
------------------------ DEMO methods -----------------------
-Functionality to change the content of a question
--- work in progress -- 
--- maybe wouldn't need it at all -- 
-
-:return: returns nothing
-'''
-def change_question(): 
-	content = post_topics()
-	input_topic = input('Type the name of the topic: ')
-	if input_topic in content:
-		post_all_questions(input_topic)
-		input_question_number = int(input('Type the number of the question you want to edit: '))
-		if input_question_number <= len(content[input_topic]):
-			input_type = input('Question or Answer: ')
-			if input_type == 'question': 
-				input_content = input('Enter your content: ')
-				content[input_topic][input_question_number - 1][input_type] = input_content
-			elif input_type == 'option':
-				input_option = input('Choose your option: ')
-				if input_option == 'A' or input_option == 'B' or input_option == 'C':
-					input_content = input('Enter your content: ')
-					content[input_topic][input_question_number - 1][input_type][input_option] = input_content
-					save_flashcard(content)
-				else: 
-					print('Invalid option')
-					start_menu()
-			else:
-				print('Invalid Type')
-				start_menu()
-		else:
-			print('Question doesnt exist')
-			start_menu()
-	else: 
-		print('Topic doesnt exist')
-		start_menu()
-
-'''
------------------------ DEMO methods -----------------------
-'''
