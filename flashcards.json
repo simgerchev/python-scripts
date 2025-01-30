@@ -2,17 +2,12 @@
     "understanding-motherboard": [
     {
         "question": "Which CPU architecture is commonly used in mobile devices due to its power efficiency?",
-        "answer": {
-            "A": "x86",
-            "B": "x64",
-            "C": "ARM"
-        },
-        "correct-answer": "C",
-        "question-type": "multiple-choise"
+        "correct-answer": "ne znam",
+        "question-type": "short-answer"
     },
     {
         "question": "Which of the following is an advantage of a multicore processor compared to a single-core processor?",
-        "answer": {
+        "option": {
             "A": "Higher clock speed",
             "B": "Ability to process multiple tasks simultaneously",
             "C": "Lower power consumption"
@@ -22,7 +17,7 @@
     },
     {
         "question": "What feature allows a single CPU core to process two threads simultaneously?",
-        "answer": {
+        "option": {
             "A": "Virtualization",
             "B": "Multithreading",
             "C": "Overclocking"
@@ -32,7 +27,7 @@
     },
     {
         "question": "Which CPU feature is essential for running virtual machines efficiently?",
-        "answer": {
+        "option": {
             "A": "ECC Memory Support",
             "B": "Hyperthreading",
             "C": "Virtualization Support (e.g., Intel VT or AMD-V)"
@@ -42,7 +37,7 @@
     },
     {
         "question": "Which type of CPU architecture is typically used for 64-bit operating systems?",
-        "answer": {
+        "option": {
             "A": "ARM",
             "B": "x86",
             "C": "x64"
@@ -52,7 +47,7 @@
     },
     {
         "question": "Multithreading allows a single CPU to process multiple instructions at the exact same time.",
-        "answer": {
+        "option": {
             "A": "True",
             "B": "False"
         },
@@ -61,7 +56,7 @@
     },
     {
         "question": "ARM CPUs are compatible with both 32-bit and 64-bit operating systems.",
-        "answer": {
+        "option": {
             "A": "True",
             "B": "False"
         },
@@ -70,7 +65,7 @@
     },
     {
         "question": "x86 architecture refers to 64-bit processors.",
-        "answer": {
+        "option": {
             "A": "True",
             "B": "False"
         },
@@ -79,7 +74,7 @@
     },
     {
         "question": "Virtualization requires both hardware and software support.",
-        "answer": {
+        "option": {
             "A": "True",
             "B": "False"
         },
@@ -88,7 +83,7 @@
     },
     {
         "question": "Multicore processors improve performance by sharing a single core's clock speed across multiple cores.",
-        "answer": {
+        "option": {
             "A": "True",
             "B": "False"
         },
