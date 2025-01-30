@@ -89,7 +89,7 @@ Function that shows the start menu
 '''
 def start_menu():
 	print("----------------------------------------------------------------------------------------------------")
-	input_option = input("Do you want to: 🦒\n"+ 
+	input_option = input("Do you want to: 🐝\n"+ 
 		"1. Show all topics\n"+
 		"2. Add another question \n"+
 		"3. Start quiz \n"+
