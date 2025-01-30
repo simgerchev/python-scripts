@@ -1,5 +1,16 @@
 {
+
     "understanding-motherboard": [
+    {
+        "question": "Which of the following is an advantage of a multicore processor compared to a single-core processor?",
+        "option": {
+            "A": "Higher clock speed",
+            "B": "Ability to process multiple tasks simultaneously",
+            "C": "Lower power consumption"
+        },
+        "correct-answer": "B",
+        "question-type": "multiple-choise"
+    },
     {
         "question": "Which CPU architecture is commonly used in mobile devices due to its power efficiency?",
         "correct-answer": "ne znam",

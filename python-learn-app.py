@@ -4,7 +4,7 @@ import sys
 # json constants 
 json_file_const = 'flashcards.json'
 short_answer_type_const = 'short-answer'
-multiple_answer_type_const = 'mutliple-choise'
+multiple_choise_type_const = 'multiple-choise'
 question_type_const = 'question-type'
 correct_answer_const = 'correct-answer'
 
@@ -53,7 +53,7 @@ def add_question():
 	if input_topic in content:
 		post_all_questions(input_topic)
 		question_type = input('What question do you want to add? multiple-choise / short-answer') 
-		if question_type == multiple_answer_type_const: 
+		if question_type == multiple_choise_type_const: 
 			input_question = input('Enter your question here: ')
 			input_first_answer = input('Enter your first answer here: ')
 			input_second_answer = input('Enter your second answer here: ')
@@ -143,27 +143,27 @@ def start_quiz():
 	if input_topic in content:
 		i = 0
 		while i < len(content[input_topic]):
-			print(content[input_topic][i]['question'])
-			if content[input_topic][i][question_type_const] == multiple_answer_type_const: 
+			if content[input_topic][i][question_type_const] == multiple_choise_type_const:
+				print(content[input_topic][i]['question']) 
 				print(content[input_topic][i][question_type_const])
 				print(content[input_topic][i]['option'])
 				input_answer = input('Answer: ')
 				if input_answer == content[input_topic][i][correct_answer_const]: 
-					i += 1
 					points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
+					i += 1
 					print(points)
 				else:
 					print('Wrong Answer')
 			elif content[input_topic][i][question_type_const] == short_answer_type_const:
+				print(content[input_topic][i]['question'])
 				print(content[input_topic][i][question_type_const])
 				input_answer = input('Answer: ')
 				if input_answer == content[input_topic][i][correct_answer_const]: 
-					i += 1
 					points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
+					i += 1
 					print(points)
 				else:
 					print('Wrong Answer')
-
 	else: 
 		print('Topic doesnt exist')
 		start_menu()
