@@ -140,34 +140,33 @@ Starts the quiz
 def start_quiz(): 
 	content = post_topics()
 	input_topic = input('Type the name of the topic: ')
-	if input_topic in content:
-		i = 0
-		while i < len(content[input_topic]):
-			if content[input_topic][i][question_type_const] == multiple_choise_type_const:
-				print(content[input_topic][i]['question']) 
-				print(content[input_topic][i][question_type_const])
-				print(content[input_topic][i]['option'])
-				input_answer = input('Answer: ')
-				if input_answer == content[input_topic][i][correct_answer_const]: 
-					points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
-					i += 1
-					print(points)
-				else:
-					print('Wrong Answer')
-			elif content[input_topic][i][question_type_const] == short_answer_type_const:
-				print(content[input_topic][i]['question'])
-				print(content[input_topic][i][question_type_const])
-				input_answer = input('Answer: ')
-				if input_answer == content[input_topic][i][correct_answer_const]: 
-					points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
-					i += 1
-					print(points)
-				else:
-					print('Wrong Answer')
-	else: 
+
+	if input_topic not in content:
 		print('Topic doesnt exist')
 		start_menu()
-
+	i = 0
+	while i < len(content[input_topic]):
+		if content[input_topic][i][question_type_const] == multiple_choise_type_const:
+			print(content[input_topic][i]['question']) 
+			print(content[input_topic][i][question_type_const])
+			print(content[input_topic][i]['option'])
+			input_answer = input('Answer: ')
+			if input_answer == content[input_topic][i][correct_answer_const]: 
+				points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
+				i += 1
+				print(points)
+			else:
+				print('Wrong Answer')
+		elif content[input_topic][i][question_type_const] == short_answer_type_const:
+			print(content[input_topic][i]['question'])
+			print(content[input_topic][i][question_type_const])
+			input_answer = input('Answer: ')
+			if input_answer == content[input_topic][i][correct_answer_const]: 
+				points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
+				i += 1
+				print(points)
+			else:
+				print('Wrong Answer')
 '''
 Stops the application
 
