@@ -138,35 +138,30 @@ Starts the quiz
 :return: returns nothing
 '''
 def start_quiz(): 
-	content = post_topics()
-	input_topic = input('Type the name of the topic: ')
+    content = post_topics()
+    input_topic = input('Type the name of the topic: ').strip()
 
-	if input_topic not in content:
-		print('Topic doesnt exist')
-		start_menu()
-	i = 0
-	while i < len(content[input_topic]):
-		if content[input_topic][i][question_type_const] == multiple_choise_type_const:
-			print(content[input_topic][i]['question']) 
-			print(content[input_topic][i][question_type_const])
-			print(content[input_topic][i]['option'])
-			input_answer = input('Answer: ')
-			if input_answer == content[input_topic][i][correct_answer_const]: 
-				points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
-				i += 1
-				print(points)
-			else:
-				print('Wrong Answer')
-		elif content[input_topic][i][question_type_const] == short_answer_type_const:
-			print(content[input_topic][i]['question'])
-			print(content[input_topic][i][question_type_const])
-			input_answer = input('Answer: ')
-			if input_answer == content[input_topic][i][correct_answer_const]: 
-				points = manage_points(input_answer == content[input_topic][i][correct_answer_const])
-				i += 1
-				print(points)
-			else:
-				print('Wrong Answer')
+    if input_topic not in content:
+        print('Topic doesn’t exist')
+        return start_menu()  # Return to prevent further execution
+
+    for question_data in content[input_topic]:
+        print("\nQuestion:", question_data["question"])
+        print("Type:", question_data["question-type"])
+
+        if question_data["question-type"] == multiple_choise_type_const:
+            for key, value in question_data["option"].items():
+                print(f"{key}: {value}")
+
+        input_answer = input("Your Answer: ").strip()
+
+        if input_answer.lower() == question_data["correct-answer"].lower():
+            points = manage_points(True)
+            print("Correct! Points:", points)
+        else:
+            print("Wrong Answer. Correct answer was:", question_data["correct-answer"])
+
+
 '''
 Stops the application
 
