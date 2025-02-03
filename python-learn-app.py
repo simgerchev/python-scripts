@@ -50,29 +50,27 @@ Adds a question
 def add_question(): 
 	content = post_topics()
 	input_topic = input('Type the name of the topic: ')
-	if input_topic in content:
-		post_all_questions(input_topic)
-		question_type = input('What question do you want to add? multiple-choise / short-answer') 
-		if question_type == multiple_choise_type_const: 
-			input_question = input('Enter your question here: ')
-			input_first_answer = input('Enter your first answer here: ')
-			input_second_answer = input('Enter your second answer here: ')
-			input_third_answer = input('Enter your third answer here: ')
-	
-			new_entry = {"question": input_question, "option": {"A":input_first_answer, "B":input_second_answer, "C":input_third_answer}}
-			content[input_topic].append(new_entry)
-			save_flashcard(content)
-		elif question_type == short_answer_type_const: 
-			input_question = input('Enter your question here: ')
-			input_answer = input('Enter your first answer here: ')
-
-			new_entry = {"question": input_question, "answer": input_answer}
-			content[input_topic].append(new_entry)
-			save_flashcard(content)
-	else: 
+	if input_option not in content:
 		print('Topic doesnt exist')
 		start_menu()
+	post_all_questions(input_topic)
+	question_type = input('What question do you want to add? multiple-choise / short-answer') 
+	if question_type == multiple_choise_type_const: 
+		input_question = input('Enter your question here: ')
+		input_first_answer = input('Enter your first answer here: ')
+		input_second_answer = input('Enter your second answer here: ')
+		input_third_answer = input('Enter your third answer here: ')
 
+		new_entry = {"question": input_question, "option": {"A":input_first_answer, "B":input_second_answer, "C":input_third_answer}}
+		content[input_topic].append(new_entry)
+		save_flashcard(content)
+	elif question_type == short_answer_type_const: 
+		input_question = input('Enter your question here: ')
+		input_answer = input('Enter your first answer here: ')
+
+		new_entry = {"question": input_question, "answer": input_answer}
+		content[input_topic].append(new_entry)
+		save_flashcard(content)
 '''
 Adds a topic
 
@@ -161,11 +159,10 @@ def start_quiz():
         else:
             print("Wrong Answer. Correct answer was:", question_data["correct-answer"])
 
-
 '''
 Stops the application
 
-:return: returns nothing
+:return: returns nothing 
 '''
 def exit(): 
 	sys.exit()
