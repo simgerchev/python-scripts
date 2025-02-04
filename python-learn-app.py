@@ -50,35 +50,36 @@ Adds a question
 def add_question(): 
 	content = post_topics()
 	input_topic = input('Type the name of the topic: ')
-	if input_option not in content:
+	if input_topic not in content:
 		print('Topic doesnt exist')
 		start_menu()
 	post_all_questions(input_topic)
 	question_type = input('What question do you want to add? multiple-choise / short-answer') 
 
 	def get_multiple_choise():
+		options = {"A": , "B": , "C": }
 		input_question = input('Enter your question here: ')
-		input_first_answer = input('Enter your first answer here: ')
-		input_second_answer = input('Enter your second answer here: ')
-		input_third_answer = input('Enter your third answer here: ')
+		for option in options:
+			option = input('Enter your option here')
 
-		new_entry = {"question": input_question, "option": {"A":input_first_answer, "B":input_second_answer, "C":input_third_answer}}
-		content[input_topic].append(new_entry)
+		new_entry = {"question": input_question, "option": options}
 
 	def get_short_answer():
 		input_question = input('Enter your question here: ')
 		input_answer = input('Enter your first answer here: ')
 
 		new_entry = {"question": input_question, "answer": input_answer}
-		content[input_topic].append(new_entry)
 
-	save_flashcard(content)
 
 	if question_type == multiple_choise_type_const: 
 		get_multiple_choise()
+		content[input_topic].append(new_entry)
+		save_flashcard(content)
 		
 	elif question_type == short_answer_type_const: 
 		get_short_answer()
+		content[input_topic].append(new_entry)
+		save_flashcard(content)
 
 '''
 Adds a topic
