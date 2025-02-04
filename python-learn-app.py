@@ -55,7 +55,8 @@ def add_question():
 		start_menu()
 	post_all_questions(input_topic)
 	question_type = input('What question do you want to add? multiple-choise / short-answer') 
-	if question_type == multiple_choise_type_const: 
+
+	def get_multiple_choise():
 		input_question = input('Enter your question here: ')
 		input_first_answer = input('Enter your first answer here: ')
 		input_second_answer = input('Enter your second answer here: ')
@@ -63,14 +64,22 @@ def add_question():
 
 		new_entry = {"question": input_question, "option": {"A":input_first_answer, "B":input_second_answer, "C":input_third_answer}}
 		content[input_topic].append(new_entry)
-		save_flashcard(content)
-	elif question_type == short_answer_type_const: 
+
+	def get_short_answer():
 		input_question = input('Enter your question here: ')
 		input_answer = input('Enter your first answer here: ')
 
 		new_entry = {"question": input_question, "answer": input_answer}
 		content[input_topic].append(new_entry)
-		save_flashcard(content)
+
+	save_flashcard(content)
+
+	if question_type == multiple_choise_type_const: 
+		get_multiple_choise()
+		
+	elif question_type == short_answer_type_const: 
+		get_short_answer()
+
 '''
 Adds a topic
 
