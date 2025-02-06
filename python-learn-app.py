@@ -52,36 +52,32 @@ def add_question():
 	input_topic = input('Type the name of the topic: ').strip().lower()
 	if input_topic not in content:
 		print('Topic doesnt exist')
-		start_menu()
-		return
+		return start_menu()
 		
 	post_all_questions(input_topic)
 	question_type = input('What question do you want to add? multiple-choise / short-answer').strip().lower() 
 
-	def get_multiple_choise():
-		input_question = input('Enter your question here: ').strip().lower()
-		input_options = ["A", "B", "C"]
-		for option in input_options:
-			option = input('Enter your option here')
-		new_entry = {"question": input_question, "option": options}
-		return new_entry
-
-	def get_short_answer():
-		input_question = input('Enter your question here: ').strip().lower()
-		input_answer = input('Enter your first answer here: ').strip().lower()
-		new_entry = {"question": input_question, "answer": input_answer}
-		return new_entry
-
-
-	if question_type == multiple_choise_type_const: 
-		get_multiple_choise()
-		content[input_topic].append(new_entry)
-		save_flashcard(content)
+	def get_multiple_choise_input():
+		options = {}
+		for input_option in options["A", "B", "C"]:
+			options[input_option] = input(f'Enter the option for {input_option} here: ')
+		return {"question": input('Enter your question here: ').strip().lower(), "option": options}
+	
+	def get_short_answer_input():
+		return {"question": input('Enter your question here: ').strip().lower(), "answer": input('Enter your first answer here: ').strip().lower()}
 		
-	elif question_type == short_answer_type_const: 
-		get_short_answer()
-		content[input_topic].append(new_entry)
+	question_types = {
+		multiple_choise_type_const: get_multiple_choise_input
+		short_answer_type_const: get_short_answer_input
+	}
+	
+	if question_type in question_types: 
+		content[input_topic].append(question_types[question_type])
 		save_flashcard(content)
+		print('Question added successfully!')
+		return start_menu()
+	else: 
+		print('Question type doesnt exist')
 
 '''
 Adds a topic
