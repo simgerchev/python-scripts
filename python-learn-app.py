@@ -49,26 +49,28 @@ Adds a question
 '''
 def add_question(): 
 	content = post_topics()
-	input_topic = input('Type the name of the topic: ')
+	input_topic = input('Type the name of the topic: ').strip().lower()
 	if input_topic not in content:
 		print('Topic doesnt exist')
 		start_menu()
+		return
+		
 	post_all_questions(input_topic)
-	question_type = input('What question do you want to add? multiple-choise / short-answer') 
+	question_type = input('What question do you want to add? multiple-choise / short-answer').strip().lower() 
 
 	def get_multiple_choise():
-        input_options = ["A", "B", "C"]
-	    input_question = input('Enter your question here: ')
+		input_question = input('Enter your question here: ').strip().lower()
+		input_options = ["A", "B", "C"]
 		for option in input_options:
 			option = input('Enter your option here')
-
 		new_entry = {"question": input_question, "option": options}
+		return new_entry
 
 	def get_short_answer():
-		input_question = input('Enter your question here: ')
-		input_answer = input('Enter your first answer here: ')
-
+		input_question = input('Enter your question here: ').strip().lower()
+		input_answer = input('Enter your first answer here: ').strip().lower()
 		new_entry = {"question": input_question, "answer": input_answer}
+		return new_entry
 
 
 	if question_type == multiple_choise_type_const: 
