@@ -43,42 +43,52 @@ def manage_points(answer):
 
 
 '''
-Adds a question
+Adds a flashcard
 
 :return: returns nothing
 '''
-def add_question(): 
+def add_flashcard(): 
     content = post_topics()
     input_topic = input('Type the name of the topic: ').strip().lower()
     if input_topic not in content:
         print('Topic doesnt exist')
         return start_menu()
         
-    post_all_questions(input_topic)
-    question_type = input('What question do you want to add? multiple-choice / short-answer').strip().lower() 
+    post_all_flashcards(input_topic)
+    flashcard_type = input('What flashlight do you want to add? multiple-choice / short-answer: ').strip().lower() 
 
     def get_multiple_choice_input():
         options = {}
         for input_option in ["A", "B", "C"]:
-                options[input_option] = input(f'Enter the option for {input_option} here: ')
-        return {"question": input('Enter your question here: '), "option": options}
+            options[input_option] = input(f'Enter the option for {input_option} here: ')
+        return {"flashcard": input('Enter your flashcard here: '), "option": options, "correct-answer": input('Enter the correct answer here: '), "flashcard-type": flashcard_type}
     
     def get_short_answer_input():
-        return {"question": input('Enter your question here: '), "answer": input('Enter your first answer here: ')}
-        
-    question_types = {
+        return {"flashcard": input('Enter your flashcard here: '), "correct-answer": input('Enter the correct answer here: '), "flashcard-type": flashcard_type}
+
+    def get_note_input():
+        notes = []
+        enter_note = True
+        while enter_note:
+            note_input = input('Enter note')
+            notes.append(note_input)
+            enter_note = input('Do you want to enter another note')
+            
+            
+        return {"flashcard": input('Enter your flashcard here: '), 
+
+    flashcard_types = {
         multiple_choice_type_const: get_multiple_choice_input,
         short_answer_type_const: get_short_answer_input
     }
     
-    if question_type in question_types: 
-        content[input_topic].append(question_types[question_type]())
+    if flashcard_type in flashcard_types: 
+        content[input_topic].append(flashcard_types[flashcard_type]())
         save_flashcard(content)
-        print('Question added successfully!')
+        print('Flashcard added successfully!')
         return start_menu()
     else: 
-        print('Question type doesnt exist')
-
+        print('Flashcard type doesnt exist')
 '''
 Adds a topic
 
@@ -87,6 +97,7 @@ Adds a topic
 def add_topic():
     content = post_topics()
     input_topic = input('Type the name of the topic you want to add: ')
+    content.append(input_topic)
 
 '''
 Function that shows the start menu
@@ -97,20 +108,21 @@ def start_menu():
     print("----------------------------------------------------------------------------------------------------")
     input_option = input("Do you want to: 🐝\n"+ 
         "1. Show all topics\n"+
-        "2. Add another question \n"+
+        "2. Add another flashcard \n"+
         "3. Start quiz \n"+
         "4. Quit \n"+
         " ---------------------------------------------------------------------------------------------------- \n"+
         "")
-    if input_option == '1':
-        post_topics()
-    if input_option == '2':
-        add_question()
-    if input_option == '3':
-        start_quiz()
-    if input_option == '4':
-        exit()
-
+    input_options = {
+        '1': post_topics,
+        '2': add_flashcard,
+        '3': start_quiz,
+        '4': exit
+    }
+    if input_option in input_options: 
+        input_options[input_option]()
+    else: 
+        print('Invalid Option :/')
 '''
 Post topics
 
@@ -130,7 +142,7 @@ Saves a flashcard
 :param content: The name of foo
 :return: returns nothing
 '''
-def post_all_questions(input_topic):
+def post_all_flashcards(input_topic):
     with open(json_file_const, "r") as file:
         content = json.load(file)
         json.dumps(content, indent=4)

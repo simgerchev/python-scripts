@@ -1,112 +1,29 @@
 {
     "understanding-motherboard": [
         {
-            "question": "Which of the following is an advantage of a multicore processor compared to a single-core processor?",
+            "flashcard": "Which of the following is an advantage of a multicore processor compared to a single-core processor?",
             "option": {
                 "A": "Higher clock speed",
                 "B": "Ability to process multiple tasks simultaneously",
                 "C": "Lower power consumption"
             },
             "correct-answer": "B",
-            "question-type": "multiple-choise"
+            "flashcard-type": "multiple-choise"
         },
         {
-            "question": "Which CPU architecture is commonly used in mobile devices due to its power efficiency?",
+            "flashcard": "Which CPU architecture is commonly used in mobile devices due to its power efficiency?",
             "correct-answer": "ne znam",
-            "question-type": "short-answer"
+            "flashcard-type": "short-answer"
         },
         {
-            "question": "Which of the following is an advantage of a multicore processor compared to a single-core processor?",
+            "flashcard": "Which of the following is an advantage of a multicore processor compared to a single-core processor?",
             "option": {
                 "A": "Higher clock speed",
                 "B": "Ability to process multiple tasks simultaneously",
                 "C": "Lower power consumption"
             },
             "correct-answer": "B",
-            "question-type": "multiple-choise"
-        },
-        {
-            "question": "What feature allows a single CPU core to process two threads simultaneously?",
-            "option": {
-                "A": "Virtualization",
-                "B": "Multithreading",
-                "C": "Overclocking"
-            },
-            "correct-answer": "B",
-            "question-type": "multiple-choise"
-        },
-        {
-            "question": "Which CPU feature is essential for running virtual machines efficiently?",
-            "option": {
-                "A": "ECC Memory Support",
-                "B": "Hyperthreading",
-                "C": "Virtualization Support (e.g., Intel VT or AMD-V)"
-            },
-            "correct-answer": "C",
-            "question-type": "multiple-choise"
-        },
-        {
-            "question": "Which type of CPU architecture is typically used for 64-bit operating systems?",
-            "option": {
-                "A": "ARM",
-                "B": "x86",
-                "C": "x64"
-            },
-            "correct-answer": "C",
-            "question-type": "multiple-choise"
-        },
-        {
-            "question": "Multithreading allows a single CPU to process multiple instructions at the exact same time.",
-            "option": {
-                "A": "True",
-                "B": "False"
-            },
-            "correct-answer": "B",
-            "question-type": "multiple-choise"
-        },
-        {
-            "question": "ARM CPUs are compatible with both 32-bit and 64-bit operating systems.",
-            "option": {
-                "A": "True",
-                "B": "False"
-            },
-            "correct-answer": "A",
-            "question-type": "multiple-choise"
-        },
-        {
-            "question": "x86 architecture refers to 64-bit processors.",
-            "option": {
-                "A": "True",
-                "B": "False"
-            },
-            "correct-answer": "B",
-            "question-type": "multiple-choise"
-        },
-        {
-            "question": "Virtualization requires both hardware and software support.",
-            "option": {
-                "A": "True",
-                "B": "False"
-            },
-            "correct-answer": "A",
-            "question-type": "multiple-choise"
-        },
-        {
-            "question": "Multicore processors improve performance by sharing a single core's clock speed across multiple cores.",
-            "option": {
-                "A": "True",
-                "B": "False"
-            },
-            "correct-answer": "B",
-            "question-type": "multiple-choise"
-        },
-        {
-            "question": "Random question",
-            "option": {
-                "A": "first option",
-                "B": "second option",
-                "C": "third option"
-            }
+            "flashcard-type": "multiple-choise"
         }
     ]
 }
