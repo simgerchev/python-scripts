@@ -59,15 +59,15 @@ def add_question():
 
 	def get_multiple_choise_input():
 		options = {}
-		for input_option in options["A", "B", "C"]:
-			options[input_option] = input(f'Enter the option for {input_option} here: ')
+		for input_option in ["A", "B", "C"]:
+			options[input_option] = input(f'Enter the option for {input_option} here: ').strip()
 		return {"question": input('Enter your question here: ').strip().lower(), "option": options}
 	
 	def get_short_answer_input():
 		return {"question": input('Enter your question here: ').strip().lower(), "answer": input('Enter your first answer here: ').strip().lower()}
 		
 	question_types = {
-		multiple_choise_type_const: get_multiple_choise_input
+		multiple_choise_type_const: get_multiple_choise_input,
 		short_answer_type_const: get_short_answer_input
 	}
 	

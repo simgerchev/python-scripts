@@ -61,7 +61,7 @@
                 "A": "True",
                 "B": "False"
             },
-    "correct-answer": "B",
+            "correct-answer": "B",
             "question-type": "multiple-choise"
         },
         {
@@ -99,8 +99,14 @@
             },
             "correct-answer": "B",
             "question-type": "multiple-choise"
+        },
+        {
+            "question": "Random question",
+            "option": {
+                "A": "first option",
+                "B": "second option",
+                "C": "third option"
+            }
         }
-	}
     ]
 }
-        
