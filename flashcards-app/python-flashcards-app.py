@@ -61,7 +61,7 @@ def add_question():
         options = {}
         for input_option in ["A", "B", "C"]:
                 options[input_option] = input(f'Enter the option for {input_option} here: ')
-        return {"question": input('Enter your question here: '), "option": options}
+        return {"question": input('Enter your question here: '), "option": options, "correct-answer": }
     
     def get_short_answer_input():
         return {"question": input('Enter your question here: '), "answer": input('Enter your first answer here: ')}
