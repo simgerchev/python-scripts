@@ -24,6 +24,14 @@
             },
             "correct-answer": "B",
             "flashcard-type": "multiple-choice"
+        },
+        {
+            "flashcard": "test",
+            "notes": [
+                "da",
+                "da"
+            ],
+            "flashcard-type": "note"
         }
     ]
 }

@@ -5,6 +5,7 @@ import sys
 json_file_const = 'flashcards.json'
 short_answer_type_const = 'short-answer'
 multiple_choice_type_const = 'multiple-choice'
+note_type_const = 'note'
 question_type_const = 'question-type'
 correct_answer_const = 'correct-answer'
 
@@ -56,7 +57,7 @@ def add_flashcard():
         return start_menu()
         
     post_all_flashcards(input_topic)
-    flashcard_type = input('What flashlight do you want to add? multiple-choice / short-answer: ').strip().lower() 
+    flashcard_type = input('What flashlight do you want to add? multiple-choice / short-answer / note: ').strip().lower() 
 
     def get_multiple_choice_input():
         options = {}
@@ -68,17 +69,22 @@ def add_flashcard():
         return {"flashcard": input('Enter your flashcard here: '), "correct-answer": input('Enter the correct answer here: '), "flashcard-type": flashcard_type}
 
     def get_note_input():
+        note_input = True
         notes = []
-        enter_note = True
-        while enter_note:
+        while note_input:
             note_input = input('Enter note')
             notes.append(note_input)
-            enter_note = input('Do you want to enter another note')
-        return {"flashcard": input('Enter your flashcard here: '), "notes": notes, 
+            note_input = input('Enter yes/y if you want to add another note: ')
+            if note_input == 'yes' or note_input == 'y': 
+                note_input = True
+            else: 
+                note_input = False
+        return {"flashcard": input('Enter your flashcard here: '), "notes": notes, "flashcard-type": flashcard_type}
 
     flashcard_types = {
         multiple_choice_type_const: get_multiple_choice_input,
-        short_answer_type_const: get_short_answer_input
+        short_answer_type_const: get_short_answer_input,
+        note_type_const: get_note_input
     }
     
     if flashcard_type in flashcard_types: 

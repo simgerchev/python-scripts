@@ -8,7 +8,7 @@
                 "C": "Lower power consumption"
             },
             "correct-answer": "B",
-            "flashcard-type": "multiple-choise"
+            "flashcard-type": "multiple-choice"
         },
         {
             "flashcard": "Which CPU architecture is commonly used in mobile devices due to its power efficiency?",
@@ -23,7 +23,15 @@
                 "C": "Lower power consumption"
             },
             "correct-answer": "B",
-            "flashcard-type": "multiple-choise"
+            "flashcard-type": "multiple-choice"
+        },
+        {
+            "flashcard": "test",
+            "notes": [
+                "da",
+                "da"
+            ],
+            "flashcard-type": "note"
         }
     ]
 }
