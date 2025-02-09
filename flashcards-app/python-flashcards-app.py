@@ -51,12 +51,8 @@ Adds a flashcard
 '''
 def add_flashcard(): 
     content = post_topics()
-    input_topic = input('Type the name of the topic: ').strip().lower()
-    if input_topic not in content:
-        print('Topic doesnt exist')
-        return start_menu()
-        
-    post_all_flashcards(input_topic)
+       
+    post_all_flashcards()
     flashcard_type = input('What flashlight do you want to add? multiple-choice / short-answer / note: ').strip().lower() 
 
     def get_multiple_choice_input():
@@ -156,12 +152,18 @@ Saves a flashcard
 :param content: The name of foo
 :return: returns nothing
 '''
-def post_all_flashcards(input_topic):
+def post_all_flashcards():
+    content = post_topics()
+    input_topic = input('Type the name of the topic: ').strip().lower()
+    if input_topic not in content:
+        print('Topic doesnt exist')
+        return start_menu()
+ 
     with open(json_file_const, "r") as file:
         content = json.load(file)
         json.dumps(content, indent=4)
-        for i in content[input_topic]:
-            print(i)
+        for flashcard in content[input_topic]:
+            print(flashcard)
     return content
 
 '''
