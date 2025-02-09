@@ -21,7 +21,7 @@ Saves a flashcard
 :param content:array content of the flashcard
 :return: returns nothing
 '''
-def save_flashcard(content):
+def save_content(content):
     with open(json_file_const, "w") as file:
         json.dump(content, file, indent=4)
 
@@ -89,7 +89,7 @@ def add_flashcard():
     
     if flashcard_type in flashcard_types: 
         content[input_topic].append(flashcard_types[flashcard_type]())
-        save_flashcard(content)
+        save_content(content)
         print('Flashcard added successfully!')
         return start_menu()
     else: 
@@ -101,9 +101,14 @@ Adds a topic
 '''
 def add_topic():
     content = post_topics()
-    input_topic = input('Type the name of the topic you want to add: ')
-    content.append(input_topic)
-
+    topic_input = input('Enter a topic: ')
+    if topic_input in content: 
+        print('Topic already exists')
+    else:
+        content[topic_input] = []
+        save_content(content)
+        print('Topic added successfully')
+    
 '''
 Function that shows the start menu
 
@@ -115,14 +120,18 @@ def start_menu():
         "1. Show all topics\n"+
         "2. Add another flashcard \n"+
         "3. Start quiz \n"+
-        "4. Quit \n"+
+        "4. Add another topic \n"+
+        "5. Show all flashcards \n"+
+        "6. Quit \n"+
         " ---------------------------------------------------------------------------------------------------- \n"+
         "")
     input_options = {
         '1': post_topics,
         '2': add_flashcard,
         '3': start_quiz,
-        '4': exit
+        '4': add_topic,
+        '5': post_all_flashcards,
+        '6': exit
     }
     if input_option in input_options: 
         input_options[input_option]()
