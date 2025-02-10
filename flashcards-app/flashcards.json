@@ -32,6 +32,14 @@
                 "da"
             ],
             "flashcard-type": "note"
+        },
+        {
+            "flashcard": "Test Note flashcard",
+            "notes": [
+                "test 1",
+                "test 2"
+            ],
+            "flashcard-type": "note"
         }
     ]
 }
