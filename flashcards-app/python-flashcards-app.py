@@ -62,20 +62,21 @@ def add_flashcard():
         print('Flashcard type doesnt exist')
 
 def start_quiz(): 
-    content = post_topics()
-    input_topic = input('Type the name of the topic: ').strip()
+    content, input_topic = post_all_flashcards()
+    flashcard_types = get_flashcard_types() 
 
-    if input_topic not in content:
-        print('Topic doesn’t exist')
-        return start_menu()  # Return to prevent further execution
+    for flashcard in content[input_topic]:
+        print("\nQuestion:", flashcard["flashcard"])
+        print("Type:", flashcard["flashcard-type"])
 
-    for question_data in content[input_topic]:
-        print("\nQuestion:", question_data["question"])
-        print("Type:", question_data["question-type"])
-
+        '''
         if question_data["question-type"] == multiple_choise_type_const:
             for key, value in question_data["option"].items():
                 print(f"{key}: {value}")
+        '''
+        if flashcard_type in flashcard_types: 
+            #in progress
+            
 
         input_answer = input("Your Answer: ").strip()
 
