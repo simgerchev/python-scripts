@@ -74,8 +74,9 @@ def start_quiz():
             for key, value in question_data["option"].items():
                 print(f"{key}: {value}")
         '''
-        if flashcard_type in flashcard_types: 
-            #in progress
+        if flashcard["flashcard_type"] in flashcard_types: 
+            if flashcard["flashcard_type"] == multiple_choise_type_const: 
+                for key,value in flashcard["option"]
             
 
         input_answer = input("Your Answer: ").strip()
