@@ -7,34 +7,9 @@ multiple_choice_type_const = 'multiple-choice'
 note_type_const = 'note'
 question_type_const = 'question-type'
 correct_answer_const = 'correct-answer'
-
-while True: 
-    start_menu()
-
-def start_menu():
-    print("----------------------------------------------------------------------------------------------------")
-    input_option = input("Do you want to: 🐝\n"+ 
-        "1. Show all topics\n"+
-        "2. Add another flashcard \n"+
-        "3. Start quiz \n"+
-        "4. Add another topic \n"+
-        "5. Show all flashcards \n"+
-        "6. Quit \n"+
-        " ---------------------------------------------------------------------------------------------------- \n"+
-        "")
-    input_options = {
-        '1': post_topics,
-        '2': add_flashcard,
-        '3': start_quiz,
-        '4': add_topic,
-        '5': post_all_flashcards,
-        '6': exit
-    }
-    if input_option in input_options: 
-        input_options[input_option]()
-    else: 
-        print('Invalid Option :/')
-        
+       
+ 
+    
 def exit(): 
     sys.exit()
     
@@ -61,6 +36,39 @@ def add_flashcard():
     else: 
         print('Flashcard type doesnt exist')
 
+def start_menu():
+    print("----------------------------------------------------------------------------------------------------")
+    input_option = input("Do you want to: 🐝\n"+ 
+        "1. Show all topics\n"+
+        "2. Add another flashcard \n"+
+        "3. Start quiz \n"+
+        "4. Add another topic \n"+
+        "5. Show all flashcards \n"+
+        "6. Quit \n"+
+        " ---------------------------------------------------------------------------------------------------- \n"+
+        "")
+    input_options = {
+        '1': post_topics,
+        '2': add_flashcard,
+        '3': start_quiz,
+        '4': add_topic,
+        '5': post_all_flashcards,
+        '6': exit
+    }
+    if input_option in input_options: 
+        input_options[input_option]()
+    else: 
+        print('Invalid Option :/')
+
+ 
+def get_multiple_choice_output(flashcard): 
+    for key, value in flashcard["option"].items():
+        print(f"{key}: {value}")
+
+def determine_output_type(flashcard): 
+    if flashcard["flashcard_type"] == multiple_choise: 
+        get_multiple_choise_output(flashcard)
+ 
 def start_quiz(): 
     content, input_topic = post_all_flashcards()
     flashcard_types = get_flashcard_types() 
@@ -68,25 +76,10 @@ def start_quiz():
     for flashcard in content[input_topic]:
         print("\nQuestion:", flashcard["flashcard"])
         #print("Type:", flashcard["flashcard-type"])
-
-        '''
-        if question_data["question-type"] == multiple_choise_type_const:
-            for key, value in question_data["option"].items():
-                print(f"{key}: {value}")
-        '''
         if flashcard["flashcard_type"] in flashcard_types: 
-            if flashcard["flashcard_type"] == multiple_choise_type_const: 
-                for key,value in flashcard["option"]
-            
+            determine_output_type(flashcard)        
+    
 
-        input_answer = input("Your Answer: ").strip()
-
-        if input_answer.lower() == question_data["correct-answer"].lower():
-            points = manage_points(True)
-            print("Correct! Points:", points)
-        else:
-            print("Wrong Answer. Correct answer was:", question_data["correct-answer"])
-            
 def get_flashcard_types():
 
     flashcard_types = {
@@ -127,7 +120,6 @@ def add_topic():
         content[topic_input] = []
         save_content(content)
         print('Topic added successfully')
-
 def post_all_flashcards():
     content = post_topics()
     input_topic = input('Type the name of the topic: ').strip().lower()
@@ -140,6 +132,7 @@ def post_all_flashcards():
         json.dumps(content, indent=4)
         for flashcard in content[input_topic]:
             print(f"Flashcard: {flashcard['flashcard']} \n ")
+                
     return content, input_topic
     
 def save_content(content):
@@ -158,7 +151,9 @@ def manage_points(answer):
         print('Game Over')
         return points
         
-
+while True: 
+    start_menu()
+    
 
 
 

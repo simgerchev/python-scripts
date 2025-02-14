@@ -41,5 +41,17 @@
             ],
             "flashcard-type": "note"
         }
+    ],
+    "da": [
+        {
+            "flashcard": "NeDa",
+            "option": {
+                "A": "Da",
+                "B": "Da",
+                "C": "Da"
+            },
+            "correct-answer": "Da",
+            "flashcard-type": "multiple-choice"
+        }
     ]
 }
