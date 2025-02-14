@@ -67,7 +67,7 @@ def start_quiz():
 
     for flashcard in content[input_topic]:
         print("\nQuestion:", flashcard["flashcard"])
-        print("Type:", flashcard["flashcard-type"])
+        #print("Type:", flashcard["flashcard-type"])
 
         '''
         if question_data["question-type"] == multiple_choise_type_const:
