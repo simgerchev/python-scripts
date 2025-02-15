@@ -64,7 +64,7 @@ def start_menu():
 def get_multiple_choice_output(flashcard): 
     for key, value in flashcard["option"].items():
         print(f"{key}: {value}")
-
+#Test
 def determine_output_type(flashcard): 
     if flashcard["flashcard_type"] == multiple_choise: 
         get_multiple_choise_output(flashcard)
