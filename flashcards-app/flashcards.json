@@ -40,6 +40,26 @@
                 "test 2"
             ],
             "flashcard-type": "note"
+        },
+        {
+            "flashcard": "Test Flashcard",
+            "option": {
+                "A": "Purva",
+                "B": "Vtora",
+                "C": "Treta"
+            },
+            "correct-answer": "Vtora",
+            "flashcard-type": "multiple-choice"
+        },
+        {
+            "flashcard": "Treti Test",
+            "option": {
+                "A": "Purva",
+                "B": "Vtora",
+                "C": "Treta"
+            },
+            "correct-answer": "Purva",
+            "flashcard-type": "multiple-choice"
         }
     ],
     "da": [

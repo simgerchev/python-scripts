@@ -20,27 +20,26 @@ def manage_points(answer):
         print('Game Over')
         return points
 
+def get_flashcard_types(): 
 
-def get_flashcard_types():
+    flashcard_types = [multiple_choice_type_const, short_answer_type_const, note_type_const]
 
-    flashcard_types = {
+    return flashcard_types
+
+def get_flashcard_type_input():
+
+    flashcard_type_input = {
         multiple_choice_type_const: get_multiple_choice_input,
         short_answer_type_const: get_short_answer_input,
         note_type_const: get_note_input
     }
 
-    return flashcard_types
+    return flashcard_type_input
        
 def save_content(content):
     with open(json_file_const, "w") as file:
         json.dump(content, file, indent=4)
-
-while True: 
-    start_menu()
-       
-def exit(): 
-    sys.exit()
-    
+  
 def post_topics(): 
     with open(json_file_const, "r") as file:
         content = json.load(file)
@@ -68,10 +67,10 @@ def add_flashcard():
     content, input_topic = post_all_flashcards()
     flashcard_type = input('What flashlight do you want to add? multiple-choice / short-answer / note: ').strip().lower() 
 
-    flashcard_types = get_flashcard_types() 
+    flashcard_type_input = get_flashcard_type_input() 
     
-    if flashcard_type in flashcard_types: 
-        content[input_topic].append(flashcard_types[flashcard_type]())
+    if flashcard_type in flashcard_type_input: 
+        content[input_topic].append(flashcard_type_input[flashcard_type]())
         save_content(content)
         print('Flashcard added successfully!')
         return start_menu()
@@ -82,15 +81,14 @@ def add_flashcard():
         input_options[input_option]()
     else: 
         print('Invalid Option :/')
-
  
 def get_multiple_choice_output(flashcard): 
     for key, value in flashcard["option"].items():
         print(f"{key}: {value}")
-#Test
+
 def determine_output_type(flashcard): 
-    if flashcard["flashcard_type"] == multiple_choise: 
-        get_multiple_choise_output(flashcard)
+    if flashcard["flashcard_type"] == multiple_choice_type_const: 
+        get_multiple_choice_output(flashcard)
  
 def start_quiz(): 
     content, input_topic = post_all_flashcards()
@@ -98,7 +96,7 @@ def start_quiz():
 
     for flashcard in content[input_topic]:
         print("\nQuestion:", flashcard["flashcard"])
-        #print("Type:", flashcard["flashcard-type"])
+        print("Type:", flashcard["flashcard-type"])
         if flashcard["flashcard_type"] in flashcard_types: 
             determine_output_type(flashcard)        
                
@@ -152,7 +150,16 @@ def start_menu():
         '5': post_all_flashcards,
         '6': exit
     }
-    
+    if input_option in input_options: 
+        input_options[input_option]()
+    else: 
+        print("Invalid option. Please choose a valid number.")
+        start_menu()
 
-
+while True:
+    start_menu()
+ 
+def exit(): 
+    sys.exit()
+  
 
