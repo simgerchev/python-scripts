@@ -85,7 +85,11 @@ def add_flashcard():
 def get_multiple_choice_output(flashcard): 
     for key, value in flashcard["option"].items():
         print(f"{key}: {value}")
-
+def get_short_answer_output(flashcard): 
+    print(flashcard["flashcard"])
+def get_note_output(flashcard):
+    for key, value in flashcard["option"].items():
+        print(f"{key}: {value}")
 def determine_output_type(flashcard):
     output_options = {
         multiple_choice_type_const: get_multiple_choice_output

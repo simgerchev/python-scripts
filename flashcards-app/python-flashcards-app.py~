@@ -90,8 +90,8 @@ def determine_output_type(flashcard):
     output_options = {
         multiple_choice_type_const: get_multiple_choice_output
     }
-    if output_option in output_options: 
-        output_options[output_option](flashcard)
+    if flashcard["flashcard-type"] in output_options: 
+        output_options[flashcard["flashcard-type"]](flashcard)
  
 def start_quiz(): 
     content, input_topic = post_all_flashcards()
