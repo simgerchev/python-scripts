@@ -86,9 +86,12 @@ def get_multiple_choice_output(flashcard):
     for key, value in flashcard["option"].items():
         print(f"{key}: {value}")
 
-def determine_output_type(flashcard): 
-    if flashcard["flashcard_type"] == multiple_choice_type_const: 
-        get_multiple_choice_output(flashcard)
+def determine_output_type(flashcard):
+    output_options = {
+        multiple_choice_type_const: get_multiple_choice_output
+    }
+    if flashcard["flashcard-type"] in output_options: 
+        output_options[flashcard["flashcard-type"]](flashcard)
  
 def start_quiz(): 
     content, input_topic = post_all_flashcards()
@@ -97,7 +100,7 @@ def start_quiz():
     for flashcard in content[input_topic]:
         print("\nQuestion:", flashcard["flashcard"])
         print("Type:", flashcard["flashcard-type"])
-        if flashcard["flashcard_type"] in flashcard_types: 
+        if flashcard["flashcard-type"] in flashcard_types: 
             determine_output_type(flashcard)        
                
 def get_multiple_choice_input():
