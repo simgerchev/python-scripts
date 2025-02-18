@@ -21,13 +21,11 @@ def manage_points(answer):
         return points
 
 def get_flashcard_types(): 
-
     flashcard_types = [multiple_choice_type_const, short_answer_type_const, note_type_const]
 
     return flashcard_types
 
 def get_flashcard_type_input():
-
     flashcard_type_input = {
         multiple_choice_type_const: get_multiple_choice_input,
         short_answer_type_const: get_short_answer_input,
@@ -61,9 +59,15 @@ def post_all_flashcards():
             print(f"Flashcard: {flashcard['flashcard']} \n ")
                 
     return content, input_topic
-    
-def add_flashcard(): 
+def check_if_answer_correct(flashlight): 
+    if input("Give your answer: ") == flashlight["correct-answer"]:
+        print("Answer is correct")
+        return True
+    else:
+        print("Answer is incorrect")
+        return False
 
+def add_flashcard(): 
     content, input_topic = post_all_flashcards()
     flashcard_type = input('What flashlight do you want to add? multiple-choice / short-answer / note: ').strip().lower() 
 
@@ -85,20 +89,28 @@ def add_flashcard():
 def get_multiple_choice_output(flashcard): 
     for key, value in flashcard["option"].items():
         print(f"{key}: {value}")
+    check_if_answer_correct(flashcard)
+
 def get_short_answer_output(flashcard): 
     print(flashcard["flashcard"])
+    check_if_answer_correct(flashcard)
+
 def get_note_output(flashcard):
-    for key, value in flashcard["option"].items():
-        print(f"{key}: {value}")
+    for value in flashcard["notes"]:
+        print(f"{value}")
+
 def determine_output_type(flashcard):
     output_options = {
-        multiple_choice_type_const: get_multiple_choice_output
+        multiple_choice_type_const: get_multiple_choice_output,
+        short_answer_type_const: get_short_answer_output,
+        note_type_const: get_note_output
     }
     if flashcard["flashcard-type"] in output_options: 
         output_options[flashcard["flashcard-type"]](flashcard)
  
 def start_quiz(): 
-    content, input_topic = post_all_flashcards()
+    content = post_topics()
+    input_topic = input('Type the name of the topic: ').strip().lower()
     flashcard_types = get_flashcard_types() 
 
     for flashcard in content[input_topic]:
