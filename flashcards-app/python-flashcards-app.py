@@ -96,8 +96,8 @@ def get_short_answer_output(flashcard):
     check_if_answer_correct(flashcard)
 
 def get_note_output(flashcard):
-    for value in flashcard["notes"]:
-        print(f"{value}")
+    for note in flashcard["notes"]:
+        print(f"{note}")
 
 def determine_output_type(flashcard):
     output_options = {
