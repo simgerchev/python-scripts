@@ -17,9 +17,8 @@ def manage_points(answer):
     else:
         return points
 
-   def get_flashcard_types(): 
+def get_flashcard_types(): 
     flashcard_types = [multiple_choice_type_const, short_answer_type_const, note_type_const]
-
     return flashcard_types
 
 def get_flashcard_type_input():
