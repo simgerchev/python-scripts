@@ -8,19 +8,16 @@ note_type_const = 'note'
 question_type_const = 'question-type'
 correct_answer_const = 'correct-answer'
 
+#under work
 def manage_points(answer):
     points = 0
     if answer == True:
         points += 1 
         return points
     else:
-        points -= 1
-        return points
-    if points < 0:
-        print('Game Over')
         return points
 
-def get_flashcard_types(): 
+   def get_flashcard_types(): 
     flashcard_types = [multiple_choice_type_const, short_answer_type_const, note_type_const]
 
     return flashcard_types
@@ -45,20 +42,7 @@ def post_topics():
         for topic in content:
             print(topic)
     return content
-       
-def post_all_flashcards():
-    content = post_topics()
-    input_topic = input('Type the name of the topic: ').strip().lower()
-    if input_topic not in content:
-        print('Topic doesnt exist')
- 
-    with open(json_file_const, "r") as file:
-        content = json.load(file)
-        json.dumps(content, indent=4)
-        for flashcard in content[input_topic]:
-            print(f"Flashcard: {flashcard['flashcard']} \n ")
-                
-    return content, input_topic
+
 def check_if_answer_correct(flashlight): 
     if input("Give your answer: ") == flashlight["correct-answer"]:
         print("Answer is correct")
@@ -89,11 +73,10 @@ def add_flashcard():
 def get_multiple_choice_output(flashcard): 
     for key, value in flashcard["option"].items():
         print(f"{key}: {value}")
-    check_if_answer_correct(flashcard)
 
 def get_short_answer_output(flashcard): 
     print(flashcard["flashcard"])
-    check_if_answer_correct(flashcard)
+
 
 def get_note_output(flashcard):
     for note in flashcard["notes"]:
@@ -106,8 +89,26 @@ def determine_output_type(flashcard):
         note_type_const: get_note_output
     }
     if flashcard["flashcard-type"] in output_options: 
-        output_options[flashcard["flashcard-type"]](flashcard)
- 
+        output_options[flashcard["flashcard-type"]](flashcard)  
+
+def post_all_flashcards():
+    content = post_topics()
+    input_topic = input('Type the name of the topic: ').strip().lower()
+    flashcard_types = get_flashcard_types()
+    if input_topic in content:
+        with open(json_file_const, "r") as file:
+            content = json.load(file)
+            json.dumps(content, indent=4)
+            for flashcard in content[input_topic]:
+                print(f"Flashcard: {flashcard['flashcard']} \n ")
+                if flashcard["flashcard-type"] in flashcard_types: 
+                    determine_output_type(flashcard)        
+
+    else: 
+        print('Topic doesnt exist')
+        return start_menu()
+    return content, input_topic
+
 def start_quiz(): 
     content = post_topics()
     input_topic = input('Type the name of the topic: ').strip().lower()
@@ -117,7 +118,8 @@ def start_quiz():
         print("\nQuestion:", flashcard["flashcard"])
         print("Type:", flashcard["flashcard-type"])
         if flashcard["flashcard-type"] in flashcard_types: 
-            determine_output_type(flashcard)        
+            determine_output_type(flashcard)
+            check_if_answer_correct(flashcard)
                
 def get_multiple_choice_input():
     options = {}
