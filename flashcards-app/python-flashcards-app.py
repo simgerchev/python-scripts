@@ -64,11 +64,6 @@ def add_flashcard():
     else: 
         print('Flashcard type doesnt exist')
 
-    if input_option in input_options: 
-        input_options[input_option]()
-    else: 
-        print('Invalid Option :/')
- 
 def get_multiple_choice_output(flashcard): 
     for key, value in flashcard["option"].items():
         print(f"{key}: {value}")
@@ -150,7 +145,27 @@ def add_topic():
         content[topic_input] = []
         save_content(content)
         print('Topic added successfully')
-           
+def delete_topic():
+    content = post_topics()
+    topic_input = input('Which topic do you want to delete?')
+    if topic_input in content: 
+        content.pop(topic_input)
+        save_content(content)
+        print('Flashcard deleted successfully')
+    else: 
+        print("Topic does not exist")
+def delete_flashcard(): 
+    content, input_topic = post_all_flashcards()
+    flashcard_input = int(input('Which flashcard do you want to delete?').strip().lower()) 
+
+    if flashcard_input < len(content[input_topic]): 
+        del content[input_topic][flashcard_input - 1]
+        save_content(content)
+        print('Flashcard deleted successfully!')
+        return start_menu()
+    else: 
+        print('Flashcard does not exist')
+
 def start_menu():
     print("----------------------------------------------------------------------------------------------------")
     input_option = input("Do you want to: 🐝\n"+ 
@@ -159,7 +174,9 @@ def start_menu():
         "3. Start quiz \n"+
         "4. Add another topic \n"+
         "5. Show all flashcards \n"+
-        "6. Quit \n"+
+        "6. Delete Topic \n"+
+        "7. Delete Flashcard \n"+
+        "8. Quit \n"+
         " ---------------------------------------------------------------------------------------------------- \n"+
         "")
     input_options = {
@@ -168,7 +185,9 @@ def start_menu():
         '3': start_quiz,
         '4': add_topic,
         '5': post_all_flashcards,
-        '6': exit
+        '6': delete_topic,
+        '7': delete_flashcard,
+        '8': exit
     }
     if input_option in input_options: 
         input_options[input_option]()
