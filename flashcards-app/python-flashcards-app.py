@@ -27,7 +27,6 @@ def get_flashcard_type_input():
         short_answer_type_const: get_short_answer_input,
         note_type_const: get_note_input
     }
-
     return flashcard_type_input
        
 def save_content(content):
@@ -53,9 +52,7 @@ def check_if_answer_correct(flashlight):
 def add_flashcard(): 
     content, input_topic = post_all_flashcards()
     flashcard_type = input('What flashlight do you want to add? multiple-choice / short-answer / note: ').strip().lower() 
-
     flashcard_type_input = get_flashcard_type_input() 
-    
     if flashcard_type in flashcard_type_input: 
         content[input_topic].append(flashcard_type_input[flashcard_type]())
         save_content(content)
@@ -70,7 +67,6 @@ def get_multiple_choice_output(flashcard):
 
 def get_short_answer_output(flashcard): 
     print(flashcard["flashcard"])
-
 
 def get_note_output(flashcard):
     for note in flashcard["notes"]:
@@ -97,7 +93,6 @@ def post_all_flashcards():
                 print(f"Flashcard: {flashcard['flashcard']} \n ")
                 if flashcard["flashcard-type"] in flashcard_types: 
                     determine_output_type(flashcard)        
-
     else: 
         print('Topic doesnt exist')
         return start_menu()
@@ -107,7 +102,6 @@ def start_quiz():
     content = post_topics()
     input_topic = input('Type the name of the topic: ').strip().lower()
     flashcard_types = get_flashcard_types() 
-
     for flashcard in content[input_topic]:
         print("\nQuestion:", flashcard["flashcard"])
         print("Type:", flashcard["flashcard-type"])
@@ -145,6 +139,7 @@ def add_topic():
         content[topic_input] = []
         save_content(content)
         print('Topic added successfully')
+        
 def delete_topic():
     content = post_topics()
     topic_input = input('Which topic do you want to delete?')
@@ -154,10 +149,10 @@ def delete_topic():
         print('Flashcard deleted successfully')
     else: 
         print("Topic does not exist")
+        
 def delete_flashcard(): 
     content, input_topic = post_all_flashcards()
     flashcard_input = int(input('Which flashcard do you want to delete?').strip().lower()) 
-
     if flashcard_input < len(content[input_topic]): 
         del content[input_topic][flashcard_input - 1]
         save_content(content)
