@@ -8,6 +8,23 @@ note_type_const = 'note'
 question_type_const = 'question-type'
 correct_answer_const = 'correct-answer'
 
+'''
+notes 
+                .---.
+           '-.  |   |  .-'         
+             ___|   |___          
+        -=  [           ]  =-    
+            `---.   .---'         
+         __||__ |   | __||__      
+         '-..-' |   | '-..-'   
+           ||   |   |   ||     
+           ||_.-|   |-,_||     
+         .-"`   `"`'`   `"-.   
+       .'                   '.
+> folder/topic management and subfolder management 
+
+'''
+
 #under work
 def manage_points(answer):
     points = 0
