@@ -25,8 +25,7 @@ notes
 '''
 
 #under work
-def manage_points(answer):
-	points = 0 
+def manage_points(points, answer): 
 	if answer == True:
 		points += 1 
 		return points
@@ -115,7 +114,7 @@ def post_all_flashcards():
     return content, input_topic
 
 def start_quiz():
-    points = manage_points(False)
+    points = 0 
     content = post_topics()
     input_topic = input('Type the name of the topic: ').strip().lower()
     flashcard_types = get_flashcard_types() 
@@ -124,9 +123,10 @@ def start_quiz():
         print("Type:", flashcard["flashcard-type"])
         if flashcard["flashcard-type"] in flashcard_types:
             determine_output_type(flashcard)
-            if determine_output_type(flashcard) != note_type_const:
-                manage_points(check_if_answer_correct(flashcard))
-    return points
+            if flashcard["flashcard-type"] != note_type_const:
+                manage_points(points, check_if_answer_correct(flashcard))
+                print(points)
+    return print(points)
 def get_multiple_choice_input():
     options = {}
     for input_option in ["A", "B", "C"]:
