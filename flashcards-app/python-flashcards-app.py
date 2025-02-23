@@ -21,19 +21,17 @@ notes
            ||_.-|   |-,_||     
          .-"`   `"`'`   `"-.   
        .'                   '.
-> folder/topic management and subfolder management 
-> test commit
-> one more test
+
 '''
 
 #under work
 def manage_points(answer):
-    points = 0
-    if answer == True:
-        points += 1 
-        return points
-    else:
-        return points
+	points = 0 
+	if answer == True:
+		points += 1 
+		return points
+	else:
+		return points
 
 def get_flashcard_types(): 
     flashcard_types = [multiple_choice_type_const, short_answer_type_const, note_type_const]
@@ -59,8 +57,8 @@ def post_topics():
             print(topic)
     return content
 
-def check_if_answer_correct(flashlight): 
-    if input("Give your answer: ") == flashlight["correct-answer"]:
+def check_if_answer_correct(flashcard): 
+    if input("Give your answer: ") == flashcard["correct-answer"]:
         print("Answer is correct")
         return True
     else:
@@ -116,17 +114,19 @@ def post_all_flashcards():
         return start_menu()
     return content, input_topic
 
-def start_quiz(): 
+def start_quiz():
+    points = manage_points(False)
     content = post_topics()
     input_topic = input('Type the name of the topic: ').strip().lower()
     flashcard_types = get_flashcard_types() 
     for flashcard in content[input_topic]:
         print("\nQuestion:", flashcard["flashcard"])
         print("Type:", flashcard["flashcard-type"])
-        if flashcard["flashcard-type"] in flashcard_types: 
+        if flashcard["flashcard-type"] in flashcard_types:
             determine_output_type(flashcard)
-            check_if_answer_correct(flashcard)
-               
+            if determine_output_type(flashcard) != note_type_const:
+                manage_points(check_if_answer_correct(flashcard))
+    return points
 def get_multiple_choice_input():
     options = {}
     for input_option in ["A", "B", "C"]:
