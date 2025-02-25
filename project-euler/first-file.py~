@@ -4,13 +4,15 @@ def problem_one():
         if x % 3 == 0 or x % 5 == 0: 
             result += x 
     print(result) 
-
-a = 1
-b = 2
-res = 0
-while res < 40: 
-    res = a + b
-    print(f"{a} + {b} = {res}")
-    a, b = b, res 
+    
+#Fibonacci numbers basic
+a = 0
+b = 1
+total = 0
+while total < 4000000:
+    if a%2==0: 
+        total += a
+    a, b = b, b+a
+print(total)
 
 
