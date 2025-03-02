@@ -5,10 +5,11 @@ show_menu = True
 
 
 def start_menu(): 
-    print("=====")
-    input_option = input("Which operation do you want to practice? \n"+
-                         "1. Start tasks \n"+
-                         "e. Quit programm \n") 
+    input_option = input("===== \n"+
+                        "Which operation do you want to practice? \n"+
+                        "1. Start tasks \n"+
+                        "e. Quit programm \n"+
+                        "===== \n") 
     input_options = {
             '1': start_tasks,
             'e': quit_program

@@ -5,10 +5,11 @@ show_menu = True
 
 
 def start_menu(): 
-    print("=====")
-    input_option = input("Which operation do you want to practice? \n"+
-                         "1. Start tasks \n"+
-                         "e. Quit programm \n") 
+    input_option = input("===== \n"+
+                        "Which operation do you want to practice? \n"+
+                        "1. Start tasks \n"+
+                        "e. Quit programm \n"+
+                        "===== \n") 
     input_options = {
             '1': start_tasks,
             'e': quit_program
@@ -34,10 +35,11 @@ def start_tasks():
     input_max_a = int(input("Biggest number a: "))
     input_min_b = int(input("Smallest number b: "))
     input_max_b = int(input("Biggest number b: "))
-   
-    while task_count>=1:
-        get_task(input_task_type, input_min_a, input_max_a, input_min_b, input_max_b)
-        task_count-=1
+    if taks_count and input_min_a and input_max_a and input_min_b and input_max b >= 0:
+        if input_min_a < input_max_a and input_min_b < input_max_b: 
+            while task_count>=1:
+                get_task(input_task_type, input_min_a, input_max_a, input_min_b, input_max_b)
+                task_count-=1
     return start_menu()
     
 def get_task(input_task_type, input_min_a, input_max_a, input_min_b, input_max_b):
