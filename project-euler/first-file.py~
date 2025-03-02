@@ -46,7 +46,9 @@
 **************#%%#%%@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@#+===========
 """
 
-#Multiplies of 3 or 5
+"""
+Multiples of 3 or 5
+"""
 def problem_one(): 
     result = 0 
     for x in range(1, 1000): 
@@ -54,7 +56,9 @@ def problem_one():
             result += x 
     print(result) 
 
-#Even Fibonacci Numbers
+"""
+Even Fibonacci Numbers
+"""
 def problem_two(): 
     a = 0
     b = 1
@@ -65,7 +69,10 @@ def problem_two():
         a, b = b, b+a
     print(total)
 
-#Largest Prime Factor
+"""
+Largest Prime Factor 
+Prime Numbers are numbers that can be divided only by 1 or themselves
+"""
 def problem_three(n): 
     prime_numbers_list = []
     div = 2
