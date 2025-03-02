@@ -2,6 +2,12 @@ import random
 import operator
 
 show_menu = True
+ops = {
+    "+": operator.add,
+    "-": operator.sub,
+    "*": operator.mul,
+    "/": operator.floordiv
+}
 
 
 def start_menu(): 
@@ -19,33 +25,26 @@ def start_menu():
     else: 
         print("Invalid option. Please choose a valid number.")
 
-def get_ops(): 
-    ops = {
-        "+": operator.add,
-        "-": operator.sub,
-        "*": operator.mul,
-        "/": operator.floordiv
-    }
-    return ops
-
-def start_tasks():
+def get_input(): 
     task_count = int(input("How many tasks do you wanna get? "))
     input_task_type = input("What kind of tasks do you want? + | - | * | / ") 
     input_min_a = int(input("Smallest number a: "))
     input_max_a = int(input("Biggest number a: "))
     input_min_b = int(input("Smallest number b: "))
     input_max_b = int(input("Biggest number b: "))
-    if taks_count and input_min_a and input_max_a and input_min_b and input_max b >= 0:
-        if input_min_a < input_max_a and input_min_b < input_max_b: 
-            while task_count>=1:
-                get_task(input_task_type, input_min_a, input_max_a, input_min_b, input_max_b)
-                task_count-=1
+
+    return task_count, input_task_type, input_min_a, input_max_a, input_min_b, input_max_b
+
+def start_tasks():
+    task_count, input_task_type, input_min_a, input_max_a, input_min_b, input_max_b = get_input() 
+    while task_count>=1:
+        get_task(input_task_type, input_min_a, input_max_a, input_min_b, input_max_b)
+        task_count-=1
     return start_menu()
     
 def get_task(input_task_type, input_min_a, input_max_a, input_min_b, input_max_b):
     a = random.randint(input_min_a, input_max_a)
     b = random.randint(input_min_b, input_max_b)
-    ops = get_ops()
     if ops[input_task_type]: 
         operator_function = ops[input_task_type]
         input_answer = input(f"How much is {a} {input_task_type} {b}: ")
