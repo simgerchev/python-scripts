@@ -26,25 +26,57 @@ def start_menu():
         print("Invalid option. Please choose a valid number.")
 
 def get_input(): 
-    task_count = int(input("How many tasks do you wanna get? "))
-    input_task_type = input("What kind of tasks do you want? + | - | * | / ") 
-    input_min_a = int(input("Smallest number a: "))
-    input_max_a = int(input("Biggest number a: "))
-    input_min_b = int(input("Smallest number b: "))
-    input_max_b = int(input("Biggest number b: "))
+    input_task_count = get_task_count()
+    input_task_type = get_task_type()
 
-    return task_count, input_task_type, input_min_a, input_max_a, input_min_b, input_max_b
+    return input_task_count, input_task_type
+
+def get_task_count(): 
+    while True: 
+        input_task_count = input("How many tasks do you wanna get? ")
+        if input_task_count.isdigit():
+            input_task_count = int(input_task_count)
+            if input_task_count > 0: 
+                return input_task_count
+            else: 
+                print("Invalid input: Input is equal or less than zero.")
+        else: 
+            print("Invalid input: Please enter a valid digital number. ")
+
+def get_input_min_max(value): 
+    while True:
+        input_min = input(f"Enter your value for {value} min")
+        input_max = input(f"Enter your value for {value} max")
+        if input_min.isdigit() and input_max.isdigit(): 
+            input_min = int(input_min)
+            input_max = int(input_max)
+            if input_min<input_max: 
+                return input_min, input_max
+            else: 
+                print("Min is bigger than max")
+        else: 
+            print("Invalid number")
+
+def get_task_type():
+    while True: 
+        input_task_type = input("What kind of tasks do you want? + | - | * | / ") 
+        if ops[input_task_type]: 
+            return input_task_type
+        else: 
+            print("Enter a valid operator") 
 
 def start_tasks():
-    task_count, input_task_type, input_min_a, input_max_a, input_min_b, input_max_b = get_input() 
-    while task_count>=1:
-        get_task(input_task_type, input_min_a, input_max_a, input_min_b, input_max_b)
-        task_count-=1
+    input_task_count, input_task_type = get_input() 
+    min_a, max_a = get_input_min_max("a")
+    min_b, max_b = get_input_min_max("b")
+    while input_task_count>=1:
+        get_task(input_task_type, min_a, max_a, min_b, max_b)
+        input_task_count-=1
     return start_menu()
     
-def get_task(input_task_type, input_min_a, input_max_a, input_min_b, input_max_b):
-    a = random.randint(input_min_a, input_max_a)
-    b = random.randint(input_min_b, input_max_b)
+def get_task(input_task_type, min_a, max_a, min_b, max_b):
+    a = random.randint(min_a, max_a)
+    b = random.randint(min_b, max_b)
     if ops[input_task_type]: 
         operator_function = ops[input_task_type]
         input_answer = input(f"How much is {a} {input_task_type} {b}: ")
