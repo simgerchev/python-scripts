@@ -1,6 +1,7 @@
 import random
 import operator
 
+score = 0
 show_menu = True
 ops = {
     "+": operator.add,
@@ -24,6 +25,12 @@ def start_menu():
         input_options[input_option]()
     else: 
         print("Invalid option. Please choose a valid number.")
+
+def manage_score(is_correct): 
+    global score
+    if is_correct: 
+        score += 1 
+        return score
 
 def get_input(): 
     input_task_count = get_task_count()
@@ -66,15 +73,19 @@ def get_task_type():
             print("Enter a valid operator") 
 
 def start_tasks():
+    global score
+    input_task_count, input_task_type = get_input() 
+    question_count = input_task_count
     min_a, max_a = get_input_min_max("a")
     min_b, max_b = get_input_min_max("b")
-    input_task_count, input_task_type = get_input() 
     while input_task_count>=1:
         get_task(input_task_type, min_a, max_a, min_b, max_b)
         input_task_count-=1
+    print(f"{score} out of {question_count}")
     return start_menu()
     
 def get_task(input_task_type, min_a, max_a, min_b, max_b):
+    is_correct = False
     a = random.randint(min_a, max_a)
     b = random.randint(min_b, max_b)
     if ops[input_task_type]: 
@@ -82,8 +93,11 @@ def get_task(input_task_type, min_a, max_a, min_b, max_b):
         input_answer = input(f"How much is {a} {input_task_type} {b}: ")
         if int(input_answer) == operator_function(a, b): 
             print("Answer is true") 
+            is_correct = True
+            manage_score(is_correct)
         else: 
             print("Answer is wrongX")
+            is_correct = False
     else: 
         print("Invalid operator")
         start_menu()
