@@ -72,6 +72,7 @@ def problem_two():
 """
 Largest Prime Factor 
 Prime Numbers are numbers that can be divided only by 1 or themselves
+n is a parameter for the number we want the prime numbers of
 """
 def problem_three(n): 
     prime_numbers_list = []
