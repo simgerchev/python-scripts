@@ -3,6 +3,7 @@ import operator
 
 score = 0
 show_menu = True
+#Define operations
 ops = {
     "+": operator.add,
     "-": operator.sub,
@@ -11,7 +12,8 @@ ops = {
 }
 
 
-def start_menu(): 
+def start_menu():
+    """Display the start menu and handle user input."""
     input_option = input("===== \n"+
                         "Which operation do you want to practice? \n"+
                         "1. Start tasks \n"+
@@ -38,7 +40,8 @@ def get_input():
 
     return input_task_count, input_task_type
 
-def get_task_count(): 
+def get_task_count():
+    """Ask the user how many tasks they want to solve."""
     while True: 
         input_task_count = input("How many tasks do you wanna get? ")
         if input_task_count.isdigit():
@@ -51,20 +54,23 @@ def get_task_count():
             print("Invalid input: Please enter a valid digital number. ")
 
 def get_input_min_max(value): 
+    """Ask the user for min and max values of operands."""
     while True:
-        input_min = input(f"Enter your value for {value} min")
-        input_max = input(f"Enter your value for {value} max")
-        if input_min.isdigit() and input_max.isdigit(): 
-            input_min = int(input_min)
-            input_max = int(input_max)
-            if input_min<input_max: 
-                return input_min, input_max
-            else: 
-                print("Min is bigger than max")
-        else: 
+        try: 
+            input_min = input(f"Enter your value for {value} min")
+            input_max = input(f"Enter your value for {value} max")
+            if input_min.isdigit() and input_max.isdigit(): 
+                input_min = int(input_min)
+                input_max = int(input_max)
+                if input_min<input_max: 
+                    return input_min, input_max
+                else: 
+                    print("Min is bigger than max")
+        except ValueError: 
             print("Invalid number")
 
 def get_task_type():
+    """Ask the user for the operation type they want to practice."""
     while True: 
         input_task_type = input("What kind of tasks do you want? + | - | * | / ") 
         if ops[input_task_type]: 
