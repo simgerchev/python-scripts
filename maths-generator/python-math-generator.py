@@ -75,11 +75,12 @@ def get_input_min_max(value):
 
 def get_task_type():
     """Ask the user for the operation type they want to practice."""
-    while True: 
-        input_task_type = input("What kind of tasks do you want? + | - | * | / ") 
-        if ops[input_task_type]: 
-            return input_task_type
-        else: 
+    while True:
+        try: 
+            input_task_type = input("What kind of tasks do you want? + | - | * | / ").strip()
+            if ops[input_task_type]: 
+                return input_task_type
+        except KeyError: 
             print("Enter a valid operator") 
 
 def start_tasks():
