@@ -3,6 +3,7 @@ import operator
 
 score = 0
 show_menu = True
+
 #Define operations
 ops = {
     "+": operator.add,
@@ -28,13 +29,15 @@ def start_menu():
     else: 
         print("Invalid option. Please choose a valid number.")
 
-def manage_score(is_correct): 
+def manage_score(is_correct):
+    """Adds 1 point to the score if user has a right question""" 
     global score
     if is_correct: 
         score += 1 
         return score
 
 def get_input(): 
+    """Gets task count input and task type input"""
     input_task_count = get_task_count()
     input_task_type = get_task_type()
 
@@ -42,15 +45,16 @@ def get_input():
 
 def get_task_count():
     """Ask the user how many tasks they want to solve."""
-    while True: 
-        input_task_count = input("How many tasks do you wanna get? ")
-        if input_task_count.isdigit():
-            input_task_count = int(input_task_count)
-            if input_task_count > 0: 
-                return input_task_count
-            else: 
-                print("Invalid input: Input is equal or less than zero.")
-        else: 
+    while True:
+        try: 
+            input_task_count = input("How many tasks do you wanna get? ")
+            if input_task_count.isdigit():
+                input_task_count = int(input_task_count)
+                if input_task_count > 0: 
+                    return input_task_count
+                else: 
+                    print("Invalid input: Input is equal or less than zero.")
+        except ValueError: 
             print("Invalid input: Please enter a valid digital number. ")
 
 def get_input_min_max(value): 
@@ -79,6 +83,7 @@ def get_task_type():
             print("Enter a valid operator") 
 
 def start_tasks():
+    """It starts to give the tasks"""
     global score
     input_task_count, input_task_type = get_input() 
     question_count = input_task_count
@@ -91,6 +96,7 @@ def start_tasks():
     return start_menu()
     
 def get_task(input_task_type, min_a, max_a, min_b, max_b):
+    """Gets a task"""
     is_correct = False
     a = random.randint(min_a, max_a)
     b = random.randint(min_b, max_b)
@@ -109,11 +115,13 @@ def get_task(input_task_type, min_a, max_a, min_b, max_b):
         start_menu()
 
 def quit_program(): 
+    """Quits the program"""
     global show_menu
     show_menu = False
     return show_menu
 
 while show_menu: 
+    """Infinite loop to show the start menu""" 
     start_menu()
 
 
