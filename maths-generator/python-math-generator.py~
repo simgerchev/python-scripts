@@ -3,6 +3,7 @@ import operator
 
 score = 0
 show_menu = True
+
 #Define operations
 ops = {
     "+": operator.add,
