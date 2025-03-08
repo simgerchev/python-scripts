@@ -86,6 +86,7 @@ def get_task_type():
 def start_tasks():
     """It starts to give the tasks"""
     global score
+    score = 0
     input_task_count, input_task_type = get_input() 
     question_count = input_task_count
     min_a, max_a = get_input_min_max("a")
