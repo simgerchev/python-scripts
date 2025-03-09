@@ -1,6 +1,7 @@
 import random
 import operator
 
+#Define score and show_menu vars
 score = 0
 show_menu = True
 
