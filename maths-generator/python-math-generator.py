@@ -1,6 +1,7 @@
 import random
 import operator
 
+#Define score and show_menu vars
 score = 0
 show_menu = True
 
@@ -75,16 +76,18 @@ def get_input_min_max(value):
 
 def get_task_type():
     """Ask the user for the operation type they want to practice."""
-    while True: 
-        input_task_type = input("What kind of tasks do you want? + | - | * | / ") 
-        if ops[input_task_type]: 
-            return input_task_type
-        else: 
+    while True:
+        try: 
+            input_task_type = input("What kind of tasks do you want? + | - | * | / ").strip()
+            if ops[input_task_type]: 
+                return input_task_type
+        except KeyError: 
             print("Enter a valid operator") 
 
 def start_tasks():
     """It starts to give the tasks"""
     global score
+    score = 0
     input_task_count, input_task_type = get_input() 
     question_count = input_task_count
     min_a, max_a = get_input_min_max("a")
