@@ -1,143 +1,205 @@
 
 import sqlite3
-import tkinter as tk
-import tkinter.ttk as ttk  # Import ttk for themed widgets
-from tkinter import messagebox
 
-# Connect to SQLite database (creates the database if it doesn't exist)
-conn = sqlite3.connect("notes_flashcards.db")
+# Connect to SQLite database (or create it)
+conn = sqlite3.connect("notes.db")
 cursor = conn.cursor()
 
-# Create tables for notes and flashcards if they don't exist
+# Create tables if they do not exist
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS folders (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT UNIQUE
+    )
+""")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS categories (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        folder_id INTEGER,
+        name TEXT,
+        FOREIGN KEY (folder_id) REFERENCES folders(id)
+    )
+""")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS subcategories (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        category_id INTEGER,
+        name TEXT,
+        FOREIGN KEY (category_id) REFERENCES categories(id)
+    )
+""")
+
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS notes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        content TEXT
+        subcategory_id INTEGER,
+        title TEXT,
+        content TEXT,
+        FOREIGN KEY (subcategory_id) REFERENCES subcategories(id)
     )
 """)
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS flashcards (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        question TEXT,
-        answer TEXT
-    )
-""")
+
 conn.commit()
 
-# Function to add a note
+# Function to create a folder
+def create_folder():
+    folder_name = input("Enter folder name: ").strip()
+    try:
+        cursor.execute("INSERT INTO folders (name) VALUES (?)", (folder_name,))
+        conn.commit()
+        print(f"Folder '{folder_name}' created successfully!")
+    except sqlite3.IntegrityError:
+        print("Folder already exists!")
+
+# Function to create a category inside a folder
+def create_category():
+    cursor.execute("SELECT * FROM folders")
+    folders = cursor.fetchall()
+    if not folders:
+        print("No folders found. Create a folder first.")
+        return
+    
+    print("Folders:")
+    for idx, folder in enumerate(folders, 1):
+        print(f"{idx}. {folder[1]}")
+    
+    folder_choice = int(input("Select a folder (Enter number): ")) - 1
+    folder_id = folders[folder_choice][0]
+
+    category_name = input("Enter category name: ").strip()
+    cursor.execute("INSERT INTO categories (folder_id, name) VALUES (?, ?)", (folder_id, category_name))
+    conn.commit()
+    print(f"Category '{category_name}' added!")
+
+# Function to create a subcategory inside a category
+def create_subcategory():
+    cursor.execute("SELECT * FROM categories")
+    categories = cursor.fetchall()
+    if not categories:
+        print("No categories found. Create a category first.")
+        return
+
+    print("Categories:")
+    for idx, category in enumerate(categories, 1):
+        print(f"{idx}. {category[2]}")
+    
+    category_choice = int(input("Select a category (Enter number): ")) - 1
+    category_id = categories[category_choice][0]
+
+    subcategory_name = input("Enter subcategory name: ").strip()
+    cursor.execute("INSERT INTO subcategories (category_id, name) VALUES (?, ?)", (category_id, subcategory_name))
+    conn.commit()
+    print(f"Subcategory '{subcategory_name}' added!")
+
+# Function to add a note inside a subcategory
 def add_note():
-    note = note_entry.get("1.0", tk.END).strip()
-    if note:
-        cursor.execute("INSERT INTO notes (content) VALUES (?)", (note,))
-        conn.commit()
-        note_entry.delete("1.0", tk.END)
-        load_notes()
-    else:
-        messagebox.showwarning("Warning", "Note cannot be empty")
+    cursor.execute("SELECT * FROM subcategories")
+    subcategories = cursor.fetchall()
+    if not subcategories:
+        print("No subcategories found. Create a subcategory first.")
+        return
 
-# Function to load and display notes
-def load_notes():
-    notes_listbox.delete(0, tk.END)
+    print("Subcategories:")
+    for idx, subcategory in enumerate(subcategories, 1):
+        print(f"{idx}. {subcategory[2]}")
+    
+    subcategory_choice = int(input("Select a subcategory (Enter number): ")) - 1
+    subcategory_id = subcategories[subcategory_choice][0]
+
+    note_title = input("Enter note title: ").strip()
+    note_content = input("Enter note content: ").strip()
+    cursor.execute("INSERT INTO notes (subcategory_id, title, content) VALUES (?, ?, ?)", 
+                   (subcategory_id, note_title, note_content))
+    conn.commit()
+    print(f"Note '{note_title}' saved!")
+
+# Function to view notes in a subcategory
+def view_notes():
+    cursor.execute("SELECT * FROM subcategories")
+    subcategories = cursor.fetchall()
+    if not subcategories:
+        print("No subcategories found.")
+        return
+
+    print("Subcategories:")
+    for idx, subcategory in enumerate(subcategories, 1):
+        print(f"{idx}. {subcategory[2]}")
+
+    subcategory_choice = int(input("Select a subcategory (Enter number): ")) - 1
+    subcategory_id = subcategories[subcategory_choice][0]
+
+    cursor.execute("SELECT * FROM notes WHERE subcategory_id = ?", (subcategory_id,))
+    notes = cursor.fetchall()
+    
+    if not notes:
+        print("No notes found in this subcategory.")
+        return
+
+    print("\nNotes:")
+    for idx, note in enumerate(notes, 1):
+        print(f"{idx}. {note[2]}")  # Display note title
+
+    note_choice = input("\nEnter the note number to view or press Enter to exit: ").strip()
+    if note_choice.isdigit():
+        note_choice = int(note_choice) - 1
+        if 0 <= note_choice < len(notes):
+            print(f"\n--- {notes[note_choice][2]} ---")
+            print(notes[note_choice][3])
+        else:
+            print("Invalid choice.")
+
+# Function to delete a note
+def delete_note():
     cursor.execute("SELECT * FROM notes")
-    for row in cursor.fetchall():
-        notes_listbox.insert(tk.END, row[1])
+    notes = cursor.fetchall()
+    if not notes:
+        print("No notes found.")
+        return
 
-# Function to view a specific note
-def view_note():
-    selected_note_index = notes_listbox.curselection()
-    if selected_note_index:
-        note_content = notes_listbox.get(selected_note_index)
-        messagebox.showinfo("Note", note_content)
+    print("Notes:")
+    for idx, note in enumerate(notes, 1):
+        print(f"{idx}. {note[2]}")  # Show note title
+    
+    note_choice = int(input("Select a note to delete (Enter number): ")) - 1
+    note_id = notes[note_choice][0]
 
-# Function to add a flashcard
-def add_flashcard():
-    question = flashcard_question_entry.get().strip()
-    answer = flashcard_answer_entry.get().strip()
-    if question and answer:
-        cursor.execute("INSERT INTO flashcards (question, answer) VALUES (?, ?)", (question, answer))
-        conn.commit()
-        flashcard_question_entry.delete(0, tk.END)
-        flashcard_answer_entry.delete(0, tk.END)
-        load_flashcards()
-    else:
-        messagebox.showwarning("Warning", "Question and answer cannot be empty")
+    cursor.execute("DELETE FROM notes WHERE id = ?", (note_id,))
+    conn.commit()
+    print("Note deleted successfully.")
 
-# Function to load and display flashcards
-def load_flashcards():
-    flashcards_listbox.delete(0, tk.END)
-    cursor.execute("SELECT * FROM flashcards")
-    for row in cursor.fetchall():
-        flashcards_listbox.insert(tk.END, row[1])
+# Function to display the menu
+def menu():
+    while True:
+        print("\n===== Note-Taking App =====")
+        print("1. Create Folder")
+        print("2. Create Category")
+        print("3. Create Subcategory")
+        print("4. Add Note")
+        print("5. View Notes")
+        print("6. Delete Note")
+        print("7. Exit")
 
-# Function to view a specific flashcard
-def view_flashcard():
-    selected_flashcard_index = flashcards_listbox.curselection()
-    if selected_flashcard_index:
-        flashcard_content = flashcards_listbox.get(selected_flashcard_index)
-        cursor.execute("SELECT * FROM flashcards WHERE question=?", (flashcard_content,))
-        flashcard = cursor.fetchone()
-        messagebox.showinfo("Flashcard", f"Question: {flashcard[1]}\nAnswer: {flashcard[2]}")
+        choice = input("Choose an option: ").strip()
 
-# GUI setup
-root = tk.Tk()
-root.title("Notes & Flashcards App")
+        if choice == "1":
+            create_folder()
+        elif choice == "2":
+            create_category()
+        elif choice == "3":
+            create_subcategory()
+        elif choice == "4":
+            add_note()
+        elif choice == "5":
+            view_notes()
+        elif choice == "6":
+            delete_note()
+        elif choice == "7":
+            print("Exiting the program.")
+            conn.close()
+            break
+        else:
+            print("Invalid option. Try again.")
 
-# Tabs Setup
-notebook = ttk.Notebook(root)
-notebook.pack(fill='both', expand=True)
-
-# Frame for Notes
-notes_frame = tk.Frame(notebook)
-notebook.add(notes_frame, text="Notes")
-
-# Notes section
-note_label = tk.Label(notes_frame, text="Write a note:")
-note_label.pack(pady=5)
-
-note_entry = tk.Text(notes_frame, height=5, width=40)
-note_entry.pack(pady=5)
-
-add_note_button = tk.Button(notes_frame, text="Add Note", command=add_note)
-add_note_button.pack(pady=5)
-
-notes_listbox = tk.Listbox(notes_frame, width=50, height=10)
-notes_listbox.pack(pady=5)
-
-view_note_button = tk.Button(notes_frame, text="View Note", command=view_note)
-view_note_button.pack(pady=5)
-
-# Frame for Flashcards
-flashcards_frame = tk.Frame(notebook)
-notebook.add(flashcards_frame, text="Flashcards")
-
-# Flashcards section
-flashcard_question_label = tk.Label(flashcards_frame, text="Question:")
-flashcard_question_label.pack(pady=5)
-
-flashcard_question_entry = tk.Entry(flashcards_frame, width=40)
-flashcard_question_entry.pack(pady=5)
-
-flashcard_answer_label = tk.Label(flashcards_frame, text="Answer:")
-flashcard_answer_label.pack(pady=5)
-
-flashcard_answer_entry = tk.Entry(flashcards_frame, width=40)
-flashcard_answer_entry.pack(pady=5)
-
-add_flashcard_button = tk.Button(flashcards_frame, text="Add Flashcard", command=add_flashcard)
-add_flashcard_button.pack(pady=5)
-
-flashcards_listbox = tk.Listbox(flashcards_frame, width=50, height=10)
-flashcards_listbox.pack(pady=5)
-
-view_flashcard_button = tk.Button(flashcards_frame, text="View Flashcard", command=view_flashcard)
-view_flashcard_button.pack(pady=5)
-
-# Load data when app starts
-load_notes()
-load_flashcards()
-
-# Start the Tkinter main loop
-root.mainloop()
-
-# Close the DB connection when done
-conn.close()
+menu()
