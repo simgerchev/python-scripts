@@ -1,4 +1,5 @@
 import sys
+import random
 
 """
 Notes
@@ -30,13 +31,28 @@ def binary_to_decimal():
 def exit_app(): 
     return sys.exit()
 
+def generate_task():
+    bin_number = []
+    i = 0
+    while i <= 4: 
+        bin_digit = random.randint(0,1) 
+        bin_number.append(bin_digit)
 
-def start_menu(): 
-    """Start menu function""" 
-    input_start_menu = input("What do you want to do: 1. Convert binary to decimal 2. Exit")
-    if input_start_menu == "1": 
-        binary_to_decimal()
-    elif input_start_menu == "2": 
-        exit_app()
+def start_menu():
+    """Display the start menu and handle user input."""
+    input_option = input("===== \n"+
+                        "What do you want to do? \n"+
+                        "1. Convert binary to decimal \n"+
+                        "e. Quit programm \n"+
+                        "===== \n") 
+    input_options = {
+            '1': binaryto_to_decimal(),
+            'e': exit_app()
+    }
+    if input_option in input_options: 
+        input_options[input_option]()
+    else: 
+        print("Invalid option. Please choose a valid number.")
+
 while True: 
     start_menu()
