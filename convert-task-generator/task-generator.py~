@@ -9,10 +9,8 @@ Now I have to make a binary to decimal quiz
 
 def binary_to_decimal(bin_number): 
     """Convert a binary to a decimal number"""
-
-    binary_number = input("Give a binary")
     converted_number = 0
-    elements = list(binary_number)
+    elements = list(bin_number)
     elements.reverse()
     elements_val = []
     
@@ -30,7 +28,16 @@ def binary_to_decimal(bin_number):
 
 def start_quiz():
     """To Do"""
-    return True
+    i = 0
+    while i <= 5: 
+        bin_number = generate_binary_number()
+        input_answer = input(f"Type the decimal version of {bin_number}: ")
+        if input_answer == binary_to_decimal(bin_number): 
+            return print("True")
+        else: 
+            return print("False")
+        i+=1
+    return print("Quiz is done")
 
 def exit_app(): 
     return sys.exit()
@@ -47,7 +54,7 @@ def generate_binary_number():
         bin_number.append(bin_digit)
         i+=1 
         print(i)
-    return print(bin_number)
+    return bin_number
 
 def start_menu():
     """Display the start menu and handle user input."""
@@ -56,11 +63,13 @@ def start_menu():
                         "What do you want to do? \n"+
                         "1. Convert binary to decimal \n"+
                         "2. Generate binary number \n"+
+                        "3. Start Quiz \n"+
                         "e. Quit programm \n"+
                         "===== \n") 
     input_options = {
             '1': binary_to_decimal,
             '2': generate_binary_number,
+            '3': start_quiz,
             'e': exit_app
     }
     if input_option in input_options: 
