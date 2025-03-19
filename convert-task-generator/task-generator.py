@@ -17,14 +17,14 @@ def binary_to_decimal(bin_number):
 
     while i < len(bin_number) - 1: 
         for element in bin_number: 
-            if element == '1': 
+            if element == 1: 
                 converted_number += 2 ** i
                 i+=1
-                print("4")
-            elif element == '0': 
+                print(element)
+            else: 
                 converted_number += 0 
                 i+=1
-                print("5")
+                print(element)
     return converted_number
 
 def exit_app(): 
@@ -37,9 +37,7 @@ def start_quiz():
         bin_number = generate_binary_number()
         input_answer = input(f"Type the decimal version of {bin_number}: ")
         input_answer = int(input_answer) 
-        print("1")
         converted_number = binary_to_decimal(bin_number)
-        print("2")
         if input_answer == converted_number: 
             print("True")
         else: 
@@ -59,7 +57,6 @@ def generate_binary_number():
         bin_digit = random.randint(0,1) 
         bin_number.append(bin_digit)
         i+=1 
-        print(i)
     return bin_number
 
 def start_menu():
