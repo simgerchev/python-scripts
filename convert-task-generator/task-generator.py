@@ -32,9 +32,11 @@ def exit_app():
 
 def start_quiz():
     """To Do"""
+
+    bin_number_length = input("Type the length of the binary number: ")
     i = 0
     while i < 5: 
-        bin_number = generate_binary_number()
+        bin_number = generate_binary_number(bin_number_length)
         input_answer = input(f"Type the decimal version of {bin_number}: ")
         input_answer = int(input_answer) 
         converted_number = binary_to_decimal(bin_number)
@@ -46,11 +48,10 @@ def start_quiz():
     return print("Quiz is done")
 
 
-def generate_binary_number():
+def generate_binary_number(bin_number_length):
     """Generate a binary number"""
 
     bin_number = []
-    bin_number_length = input("Type the length of the binary number: ")
     bin_number_length = int(bin_number_length) - 1
     i = 0
     while i < bin_number_length + 1: 
