@@ -32,10 +32,10 @@ def exit_app():
 
 def start_quiz():
     """To Do"""
-
     bin_number_length = input("Type the length of the binary number: ")
+    task_count_input = input("How many tasks do you want to get: ")
     i = 0
-    while i < 5: 
+    while i < task_count_input: 
         bin_number = generate_binary_number(bin_number_length)
         input_answer = input(f"Type the decimal version of {bin_number}: ")
         input_answer = int(input_answer) 
