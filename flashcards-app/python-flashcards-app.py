@@ -10,18 +10,6 @@ correct_answer_const = 'correct-answer'
 
 '''
 notes 
-                .---.
-           '-.  |   |  .-'         
-             ___|   |___          
-        -=  [           ]  =-    
-            `---.   .---'         
-         __||__ |   | __||__      
-         '-..-' |   | '-..-'   
-           ||   |   |   ||     
-           ||_.-|   |-,_||     
-         .-"`   `"`'`   `"-.   
-       .'                   '.
-
 '''
 def get_flashcard_types(): 
     flashcard_types = [multiple_choice_type_const, short_answer_type_const, note_type_const]
