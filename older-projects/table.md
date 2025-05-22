@@ -1,0 +1,3 @@
+| Eingabe Daten | Erwartete Ausgabe                                                                                                                 |   |   |   |   |   |   |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------|---|---|---|---|---|---|
+| Wein, 8, 10   | Name: Wein Preis pro Flasche: 8 Euro Bestellte Flaschen: 10 Stück Gesamtpreis: 80 Euro Kartons: 2 Stück freie Plätze im Karton: 2 |
