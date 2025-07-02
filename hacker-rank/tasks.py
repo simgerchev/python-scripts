@@ -17,10 +17,10 @@ def first_task():
 Task
 Given an integer, , perform the following conditional actions:
 
-If n is odd, print Weird
-If n is even and in the inclusive range of 2 to 5, print Not Weird
-If n is even and in the inclusive range of 6 to 20, print Weird
-If n is even and greater than 20, print Not Weird
+    If n is odd, print Weird
+    If n is even and in the inclusive range of 2 to 5, print Not Weird
+    If n is even and in the inclusive range of 6 to 20, print Weird
+    If n is even and greater than 20, print Not Weird
 '''
 def second_task(): 
     n = int(input().strip())
@@ -78,10 +78,10 @@ An extra day is added to the calendar almost every four years as February 29, an
 
 In the Gregorian calendar, three conditions are used to identify leap years:
 
-The year can be evenly divided by 4, is a leap year, unless:
-The year can be evenly divided by 100, it is NOT a leap year, unless:
-The year is also evenly divisible by 400. Then it is a leap year.
-This means that in the Gregorian calendar, the years 2000 and 2400 are leap years, while 1800, 1900, 2100, 2200, 2300 and 2500 are NOT leap years. 
+    The year can be evenly divided by 4, is a leap year, unless:
+    The year can be evenly divided by 100, it is NOT a leap year, unless:
+    The year is also evenly divisible by 400. Then it is a leap year.
+    This means that in the Gregorian calendar, the years 2000 and 2400 are leap years, while 1800, 1900, 2100, 2200, 2300 and 2500 are NOT leap years. 
 '''
 def sixth_task(): 
     def is_leap(year):
@@ -101,8 +101,8 @@ def sixth_task():
 The included code stub will read an integer, n , from STDIN.
 
 Without using any string methods, try to print the following:
-123...n
-Note that "..." represents the consecutive values in between.
+    123...n
+    Note that "..." represents the consecutive values in between.
 '''
 def seventh_task(): 
     n = int(input())
@@ -120,5 +120,20 @@ def eighth_task():
     x, y, z, n = (int(input()) for _ in range(4))
     print([(i, j, k) for i in range(x + 1) for j in range(y + 1) for k in range(z + 1) if (i + j + k) != n])
 
+'''
+Given the participants' score sheet for your University Sports Day, you are required to find the runner-up score. 
+You are given  scores. 
+Store them in a list and find the score of the runner-up.
+'''
+def ninth_task(): 
+    n = int(input())
+    arr = map(int, input().split())
+    arr = list(set(arr))
+    arr.sort()
+    print(arr[-2])
 
+'''
+Given the names and grades for each student in a class of N students, store them in a nested list and print the name(s) of any student(s) having the second lowest grade.
 
+Note: If there are multiple students with the second lowest grade, order their names alphabetically and print each name on a new line.
+'''
