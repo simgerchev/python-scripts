@@ -137,3 +137,20 @@ Given the names and grades for each student in a class of N students, store them
 
 Note: If there are multiple students with the second lowest grade, order their names alphabetically and print each name on a new line.
 '''
+def tenth_task():
+    python_students = []
+    arr = []
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        python_students.append([name, score])
+    
+    grades = sorted(set([grade for name, grade in python_students]))
+    second_lowest = grades[1]
+
+    # Find all students with the second lowest grade
+    second_lowest_students = [name for name, grade in python_students if grade == second_lowest]
+
+    # Sort names alphabetically and print
+    for name in sorted(second_lowest_students):
+        print(name)
