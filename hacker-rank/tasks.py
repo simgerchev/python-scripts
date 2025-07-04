@@ -148,9 +148,7 @@ def tenth_task():
     grades = sorted(set([grade for name, grade in python_students]))
     second_lowest = grades[1]
 
-    # Find all students with the second lowest grade
     second_lowest_students = [name for name, grade in python_students if grade == second_lowest]
 
-    # Sort names alphabetically and print
     for name in sorted(second_lowest_students):
         print(name)
