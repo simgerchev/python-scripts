@@ -189,4 +189,4 @@ def eleventh_task():
     query_name = input()
     student_marks_query = student_marks[query_name]
     student_mark_avg = sum(student_marks_query)/len(student_marks_query)
-    print("{:.2f}".format(student_mark_avg))
+    print(f"{student_mark_avg:.2f}")
