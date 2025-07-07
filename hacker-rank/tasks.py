@@ -190,3 +190,46 @@ def eleventh_task():
     student_marks_query = student_marks[query_name]
     student_mark_avg = sum(student_marks_query)/len(student_marks_query)
     print(f"{student_mark_avg:.2f}")
+
+'''
+Consider a list (list = []). You can perform the following commands:
+
+    insert i e: Insert integer e at position i.
+    print: Print the list.
+    remove e: Delete the first occurrence of integer e.
+    append e: Insert integer e at the end of the list.
+    sort: Sort the list.
+    pop: Pop the last element from the list.
+    reverse: Reverse the list.
+
+Initialize your list and read in the value of n followed by n lines of commands where each command will be of the 7 types listed above. 
+Iterate through each command in order and perform the corresponding operation on your list.
+'''
+def twelfth_task(): 
+    N = int(input())
+    i = 0
+    arr = []
+    
+    def check_command(command): 
+        if command[0] == 'insert':
+            arr.insert(int(command[1]), int(command[2]))
+        elif command[0] == 'print': 
+            print(arr)
+        elif command[0] == 'remove': 
+            arr.remove(int(command[1]))
+        elif command[0] == 'append':
+            arr.append(int(command[1]))
+        elif command[0] == 'sort':
+            arr.sort()
+        elif command[0] == 'pop':
+            arr.pop()
+        elif command[0] == 'reverse':
+            arr.reverse()
+    
+    while i < N:  
+        command = input().split()
+        check_command(command)
+        i += 1 
+
+         
+        
