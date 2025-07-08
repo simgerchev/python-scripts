@@ -230,6 +230,9 @@ def twelfth_task():
         command = input().split()
         check_command(command)
         i += 1 
+'''
+'''
+def thirteenth_task(): 
 
          
         
